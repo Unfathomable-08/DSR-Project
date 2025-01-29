@@ -1,0 +1,54 @@
+.add-task {
+    width: 100vw;
+    height: calc(100vh - 70px);
+    position: absolute;
+    top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.add-task form {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    width: 360px;
+    height: 350px;
+    border-radius: 25px;
+    background-color: white;
+    transform: translateY(-30px);
+    padding: 30px 15px;
+    position: relative;
+}
+
+.add-task form h2 {
+    text-align: center;
+    color: #001696;
+    padding-bottom: 20px;
+}
+
+.cross {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+}
+
+.add-task form input {
+    border: 1px solid #aaa;
+    width: calc(100% - 22px);
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.add-task form input[type="submit"]{
+    width: 100%;
+    background-color: #001696;
+    color: white;
+}
+
+.editTask {
+    
+}

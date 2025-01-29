@@ -1,0 +1,113 @@
+.navbar {
+    height: 70px;
+    background-color: #001696;
+    color: white;
+    padding: 0 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar h1 {
+    font-size: 30px;
+}
+
+.signout {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    padding: 7px 18px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.signout:hover {
+    background-color: white;
+    color: #001696;
+    box-shadow: 0px 0px 15px white ;
+}
+
+.profile {
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin-left: 20px;
+}
+
+.profile:hover {
+    background-color: white;
+    box-shadow: 0px 0px 15px white ;
+}
+
+.profile:hover i {
+    color: #001696;
+}
+
+.profile i {
+    color: white;
+}
+
+.profile-options {
+    width: 200px;
+    height: 250px;
+    position: absolute;
+    background-color: #00000088;
+    border-radius: 10px;
+    top: 75px;
+    right: 100px;
+    z-index: 5;
+    padding: 15px 10px;
+    text-align: center;
+}
+
+.profile-options ul {
+    padding: 30px 10px;
+    text-align: left;
+}
+
+.profile-options ul li {
+    list-style: none;
+    border-bottom: 1px solid #ffffffaa;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-options ul li i {
+    padding-right: 5px;
+}
+
+.profile-position {
+    color: #ddd;
+}
+
+.link-profile {
+    color: white !important;
+}
+
+.logout-panel-btn {
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width:700px) {
+    .navbar h1 {
+        font-size: 28px;
+    }
+}
+@media (max-width:570px) {
+    .navbar {
+        padding: 0 40px;
+    }
+    .navbar h1 {
+        font-size: 24px;
+    }
+}

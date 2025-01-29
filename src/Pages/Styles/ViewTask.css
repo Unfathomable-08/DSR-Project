@@ -1,0 +1,141 @@
+.view-task {
+    width: 100vw;
+    height: calc(100vh - 70px);
+    position: absolute;
+    top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
+}
+
+.view-task-div {
+    position: relative;
+    width: 80vw;
+    height: 70vh;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    padding: 30px 15px;
+    transform: translateY(-20px);
+}
+
+.view-task-div h1 {
+    color: #001696;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.tasks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 10px;
+    overflow-y: scroll;
+    max-height: 90%;
+    scroll-behavior: smooth;
+}
+
+.task {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+}
+
+.task h3 {
+    padding-bottom: 10px;
+}
+
+.task b {
+    font-size: 14px;
+    font-weight: lighter;
+    color: #001696;
+}
+
+.task b span {
+    color: #444;
+}
+
+.task p {
+    color: #666;
+    padding-top: 10px
+}
+
+.task-cont {
+    background-color: #f9f9f9;
+    margin: 5px 10px;
+    padding: 15px 20px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.task::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(0, 77, 255, 0.3), rgba(255, 255, 255, 0.3));
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.task:hover::before {
+    opacity: 1;
+}
+
+.tasks::-webkit-scrollbar {
+    width: 8px;
+}
+
+.tasks::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.tasks::-webkit-scrollbar-thumb {
+    background: #001696;
+    border-radius: 10px;
+}
+
+.tasks::-webkit-scrollbar-thumb:hover {
+    background: #0040d1;
+}
+
+.task-btn-cont {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 7px;
+}
+
+.task-btn {
+    background-color: #001696;
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 12px;
+}
+
+.task-btn:hover {
+    background-color: #0040d1;
+}
+
+@media (max-width: 860px) {
+    .tasks {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,119 @@
+.add-project-cont {
+    height: calc(100vh - 70px);
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-project {
+    width: 80%;
+    min-height: 80%;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    padding: 30px;
+}
+
+.add-project h1 {
+    text-align: center;
+    color: #001696;
+}
+
+.add-project .form input {
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    width: 100%;
+    margin: 10px;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    height: 100%;
+}
+
+.add-project .form textarea {
+    width: 100%;
+    height: 60%;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+}
+
+.input2 h3 {
+    padding: 20px 0 16px 0;
+}
+
+.input2 input {
+    width: 80% !important;
+    margin: 0 !important;
+}
+
+.input2 .assigned-input {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input2 .assigned-input button {
+    padding: 5px 15px;
+    font-size: 12px;
+    border: none;
+    background-color: #f44336;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.add-project form {
+    
+}
+
+.input2 .assigned-input button:hover {
+    background-color: #d32f2f;
+}
+
+.btn-div-lead {
+    width: calc(80% + 41px);
+}
+
+.btn-div-lead button {
+    margin-top: 100px !important;
+    margin: 10px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #001696;
+    color: white;
+}
+
+.add-more-assigned {
+    margin: 10px;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 10px;
+    background-color: #001696;
+    color: white;
+    display: flex;
+    justify-self: end;
+}
+
+@media (max-width: 640px) {
+    .form {
+        grid-template-columns: 1fr;
+    }
+    .form input, .form textarea {
+        width: 90% !important;
+    }
+    .btn-div-lead {
+        width: calc(100% - 1vw);
+    }
+    .input2 h3 {
+        padding: 50px 0 0 0;
+    }
+}

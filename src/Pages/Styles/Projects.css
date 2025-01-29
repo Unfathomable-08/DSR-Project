@@ -1,0 +1,38 @@
+.project-header {
+    height: 150px;
+    padding: 0px 80px;
+    display: flex;
+    align-items: center;
+}
+
+.project-header img {
+    height: 70%;
+    margin-right: 80px;
+}
+
+.project-header>div {
+    background-color: rgba(0, 0, 255, 0.226);
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #001696;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.project-header i {
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.projects-names {
+    padding: 10px 80px;
+}
+
+.projects-names>div {
+    background-color: #aaa;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px 20px;
+}

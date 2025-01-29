@@ -1,0 +1,143 @@
+.project-grid {
+    background-color: #f9f9f9;
+    margin: 20px 30px;
+    padding: 20px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.project {
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+}
+
+.project::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(0, 77, 255, 0.3), rgba(255, 255, 255, 0.3));
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.4s ease-in-out;
+}
+
+.project:hover::before {
+    opacity: 1;
+}
+
+.project-heading {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 36px;
+    color: #001696;
+    font-weight: 600;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.project-btn {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px;
+}
+
+.project-btn button {
+    background-color: #001696;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.project-btn button:hover {
+    background-color: #0040d1;
+}
+
+.project h3 {
+    padding-bottom: 10px;
+}
+
+.project b {
+    color: #001696;
+    font-weight: lighter;
+    font-size: 14px;
+}
+
+.project b span {
+    color: #444;
+}
+
+.project p {
+    color: #666;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+.dots {
+    font-weight: bold !important;
+    font-size: 20px;
+}
+
+.deadline {
+    color: green !important;
+}
+
+.deadline-passed {
+    color: red !important;
+}
+
+.search-pro {
+    width: 80%;
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #aaa;
+    margin: 0 10px;
+    position: relative;
+    z-index: 1;
+}
+
+@media (max-width: 800px) {
+    .project-grid {
+        grid-template-columns: 3fr 1fr;
+    }
+    .project-heading {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 570px) {
+    .project-grid {
+        margin: 10px 15px;
+        padding: 10px;
+    }
+    .project-btn {
+        padding: 10px;
+        gap: 5px;
+    }
+    .project-btn button {
+        font-size: 12px;
+    }
+    .project-heading {
+        font-size: 30px;
+    }
+}
