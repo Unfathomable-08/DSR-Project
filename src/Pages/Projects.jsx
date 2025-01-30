@@ -1,8 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './Styles/Projects.css'
 import img from '../assets/avatar2.jpg'
+import axios from 'axios';
 
 const Projects = () => {
+    const [data, setData] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [focusedProject, setFocusedProject] = useState('')
+
+    useEffect(()=>{
+        const token = localStorage.getItem('token');
+        if (token){
+          const fetchData = async () => {
+            try {
+              const res = await axios.get('http://127.0.0.1:8000/users/projects/', {
+                headers: {
+                  'Authorization': `Bearer ${token})}`
+                }
+              }); 
+              setData(res.data.data)
+            } catch (error) {
+              alert('An error occured while sending data!')
+              console.error(error);
+            }
+          };
+          fetchData();
+        }
+      },[]);
+
+      useEffect(()=>{
+        const fetchData = async () => {
+            const token = localStorage.getItem('token');
+            try {
+                const res = await axios.get(`http://127.0.0.1:8000/users/task/?project=${focusedProject}`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`
+                    }
+                });
+                setTasks(res.data);
+                console.log(res.data)
+            }
+            catch (error){
+                console.log(error)
+            }
+        }
+        fetchData();
+    },[focusedProject])
+
   return (
     <div>
       <section className='project-header'>
@@ -29,43 +73,53 @@ const Projects = () => {
             </div>
         </div>
       </section>
-      <section className='projects-names'>
-        <h1>
-            Projects
-        </h1>
-        <div>
-            Project Alpha
-        </div>
-        <div>
-            Project Beta
-        </div>
+      <section className='projects-grid'>
+        <section className='projects-names'>
+            <h1>
+                Projects
+            </h1>
+            {
+                data.map((data, index)=>{
+                    return(
+                        <div key={index} onClick={()=>setFocusedProject(data.name)}>
+                            { data.name }
+                        </div>
+                    )
+                })
+            }
+        </section>
+        <section className='project-details'>
+            <h1>Project Alpha</h1>
+            <b>Start Date: </b><br />
+            <b>End Date: </b><br />
+            <b>Client: </b><br />
+            <b>Team Members: </b><br />
+        </section>
       </section>
-      <section className='project-details'>
-        <h1>Project Alpha</h1>
-        <b>Start Date</b><br />
-        <b>End Date</b><br />
-        <b>Client</b><br />
-        <b>Team Members</b><br />
-      </section>
-      <section className='tasks'>
+      <section className='project-tasks'>
         <h1>Tasks</h1>
         <table>
             <thead>
-                <td>Task Name</td>
-                <td>Assigned Date</td>
-                <td>Status</td>
+                <tr>
+                    <td>Task Name</td>
+                    <td>Assigned Date</td>
+                    <td>Status</td>
+                    <td>Timer</td>
+                </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Task 1</td>
-                    <td>date 1</td>
-                    <td>In progress</td>
-                </tr>
-                <tr>
-                    <td>Task 2</td>
-                    <td>date 2</td>
-                    <td>In pending</td>
-                </tr>
+                {
+                    tasks.map((task, index)=>{
+                        return (
+                            <tr key={index}>
+                                <td>{ task.name }</td>
+                                <td>{ task.created_at.split('T')[0] + " " + task.created_at.split('T')[1].split(':')[0] + ':' + task.created_at.split('T')[1].split(':')[1] }</td>
+                                <td>{ task.flag }</td>
+                                <td></td>
+                            </tr>
+                        )
+                    })
+                }
             </tbody>
         </table>
       </section>
