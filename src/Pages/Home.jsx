@@ -30,15 +30,6 @@ const Home = () => {
   const searchRef = useRef(null);
   const [searchValue, setSearchValue] = useState('');
 
-  // const searchFn = () => {
-  //   if (searchRef.current.value !== ""){
-  //     setFetchURL(`http://127.0.0.1:8000/users/projects/?search=${searchRef.current.value}`)
-  //   }
-  //   else {
-  //     setFetchURL('http://127.0.0.1:8000/users/projects/');
-  //   }
-  // }
-
   //featching
 
   useEffect(()=>{
@@ -113,7 +104,6 @@ const Home = () => {
                 <input onChange={(e)=>{setSearchValue(e.target.value)}} className='search-pro' type="search" name="" id="" ref={searchRef}/>
             </div>
             <div className="project-btn">
-                {/* <button onClick={searchFn}>Search Projects</button> */}
                 <button>Search Projects</button>
             </div>
           </div>

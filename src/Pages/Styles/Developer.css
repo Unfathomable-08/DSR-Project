@@ -1,0 +1,99 @@
+.project-header {
+    height: 150px;
+    padding: 0px 100px;
+    display: flex;
+    align-items: center;
+}
+
+.project-header img {
+    height: 70%;
+    margin-right: 80px;
+}
+
+.project-header>div {
+    background-color: rgba(0, 0, 255, 0.226);
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    color: #001696;
+    line-height: 22px;
+    display: flex;
+    align-items: center;
+}
+
+.project-header i {
+    margin-right: 15px;
+    font-size: 18px;
+}
+
+.projects-names>div {
+    background-color: #aaa;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px 20px;
+}
+
+.projects-names h1 {
+    color: #001696;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    padding: 10px 80px;
+    gap: 15px;
+}
+
+.project-grid-opened {
+    padding: 10px 80px;
+}
+
+.project-details {
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    line-height: 35px;
+}
+
+.project-details h1 {
+    color: #001696;
+    font-size: 22px;
+}
+
+.project-details b {
+    font-size: 16px;
+}
+
+.project-tasks {
+    margin: 20px 80px;
+    padding: 20px 35px;
+    background-color: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 10px ;
+}
+
+.project-tasks table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 15px;
+}
+
+.project-tasks table td, .project-tasks table th {
+    width: 25%;
+}
+
+.project-tasks h1 {
+    padding-bottom: 10px;
+    color: #001696;
+}
+
+.project-tasks table thead {
+    font-weight: bold;
+    text-align: center;
+}
+
+.project-tasks table td{
+    border: 1px solid black;
+    padding: 10px 15px;
+}

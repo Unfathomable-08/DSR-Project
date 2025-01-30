@@ -8,7 +8,7 @@ import { UserName, PopUpOpened, UserPosition, UserEmail } from './Context'
 import ChangePassword from './Pages/ChangePassword'
 import Lead from './Pages/Lead'
 import AdminPanel from './Pages/AdminPanel'
-import Projects from './Pages/Projects'
+import Developer from './Pages/Developer'
 
 const App = () => {
   const [userName, setUserName] = useState('');
@@ -40,7 +40,7 @@ const App = () => {
                   <Route path='/resetPassword' element={<ChangePassword/>}/>
                   <Route path='/lead/addProject' element={<Lead/>}/>
                   <Route path='/admin' element={<AdminPanel/>}/>
-                  <Route path='/projects' element={<Projects/>}/>
+                  <Route path='/developer' element={<Developer/>}/>
                 </Routes>
               </BrowserRouter>
             </UserName.Provider>
