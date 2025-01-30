@@ -13,3 +13,15 @@ body {
 .no-scroll {
   overflow-y: hidden;
 }
+
+.app-cont {
+  width: calc(100vw - 250px);
+  margin-left: 240px;
+}
+
+@media (max-width: 860px) {
+  .app-cont {
+    width: 100%;
+    margin-left: 0;
+  }
+}

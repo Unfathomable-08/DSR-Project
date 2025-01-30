@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import '../Pages/Styles/Navbar.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { UserName, UserPosition } from '../Context';
+import { SidebarContext, UserName, UserPosition } from '../Context';
 
 const Navbar = () => {
 
@@ -11,11 +11,18 @@ const Navbar = () => {
   const [userName] = useContext(UserName);
   const [userPosition] = useContext(UserPosition);
 
+  const [sidebarOpened, setSidebarOpened] = useContext(SidebarContext)
+
   const profileOptionRef = useRef(null);
 
   const toggleProfile = () => {
     profileOptionRef.current.classList.toggle("hidden");
-  };  
+  };
+
+  const toggleSidebar = () => {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle("hidden");
+  }
 
   const logout = () => {
     localStorage.removeItem('token');
@@ -24,7 +31,10 @@ const Navbar = () => {
 
   return (
     <div className='navbar'>
-      <h1>LMS Portal</h1>
+      <div className='navbar-left'>
+        <button onClick={toggleSidebar} className='sidebar-toggler-btn'><i className="fa-solid fa-bars"></i></button>
+        <h1>LMS Portal</h1>
+      </div>
       <nav>
         <button onClick={logout} className='signout'>Logout</button>
         <button onClick={toggleProfile} className='profile'><i className="fa-solid fa-user"></i></button>

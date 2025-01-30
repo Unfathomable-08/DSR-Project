@@ -98,6 +98,25 @@
     display: none;
 }
 
+.navbar-left {
+    display: flex;
+}
+
+.navbar-left button {
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    padding-right: 45px !important;
+    transform: translateY(2px);
+}
+
+.sidebar-toggler-btn {
+    display: none;
+}
+
 @media (max-width:700px) {
     .navbar h1 {
         font-size: 28px;
@@ -109,5 +128,10 @@
     }
     .navbar h1 {
         font-size: 24px;
+    }
+}
+@media (max-width: 860px) {
+    .sidebar-toggler-btn {
+        display: block;
     }
 }

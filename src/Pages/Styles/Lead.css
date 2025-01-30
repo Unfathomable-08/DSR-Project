@@ -16,7 +16,6 @@
 }
 
 .add-project h1 {
-    text-align: center;
     color: #001696;
 }
 
@@ -68,10 +67,6 @@
     color: white;
     border-radius: 10px;
     cursor: pointer;
-}
-
-.add-project form {
-    
 }
 
 .input2 .assigned-input button:hover {
