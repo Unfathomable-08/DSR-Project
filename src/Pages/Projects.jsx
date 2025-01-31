@@ -3,8 +3,9 @@ import { useForm, useFieldArray } from "react-hook-form";
 import Navbar from "../Components/Navbar";
 import "./Styles/Projects.css";
 import axios from "axios";
-import { UserEmail } from "../Context";
+import { UserEmail, UserName, UserPosition } from "../Context";
 import Sidebar from "../Components/Sidebar";
+import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
     const [showForm, setShowForm] = useState(false);
@@ -14,11 +15,15 @@ const Projects = () => {
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
     const { fields, append, remove } = useFieldArray({ control, name: "assigned_to" });
 
-    const [userEmail] = useContext(UserEmail);
+    const [userEmail, setUserEmail] = useContext(UserEmail);
+    const [, setUserName] = useContext(UserName);
+    const [userPosition, setUserPosition] = useContext(UserPosition)
+    
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         setFormData(data);
-        reset(); 
+        reset();
         setShowForm(false);
     };
 
@@ -33,6 +38,10 @@ const Projects = () => {
                             'Authorization': `Bearer ${token}`
                         }
                     });
+                    console.log(res.data)
+                    setUserEmail(res.data.user_email)
+                    setUserName(res.data.user_name)
+                    setUserPosition(res.data.user_role)
                     setData(res.data.data);
 
                     // Fetch tasks for each project
@@ -49,9 +58,12 @@ const Projects = () => {
                 } catch (error) {
                     alert('An error occurred while sending data!');
                     console.error(error);
+                    navigate('/login')
                 }
             };
             fetchData();
+            console.log(userEmail)
+            console.log(userPosition)
         }
     }, []);
 
@@ -59,6 +71,7 @@ const Projects = () => {
 
     useEffect(() => {
         if (formData !== "") {
+            console.log(formData)
             const token = localStorage.getItem('token');
             const fetchData = async () => {
                 try {
@@ -69,7 +82,7 @@ const Projects = () => {
                         }
                     });
                     console.log(res)
-                    if (res.status == 201){
+                    if (res.status == 201) {
                         //
                     }
                 } catch (error) {
@@ -83,7 +96,7 @@ const Projects = () => {
 
     return (
         <>
-            <Sidebar/>
+            <Sidebar />
             <Navbar />
             <div>
                 <section className="project-section-container">
@@ -100,10 +113,9 @@ const Projects = () => {
                                 <div className="project-form-grid">
                                     <div className="project-input-group">
                                         <input
-                                            type="text"
+                                            type="hidden"
                                             value={userEmail}
-                                            hidden
-                                            {...register('assigned_by')}
+                                            {...register('assigned_by', { required: true })}  
                                         />
                                         <input
                                             type="text"
@@ -111,7 +123,12 @@ const Projects = () => {
                                             {...register('name', { required: "Project Name is required" })}
                                         />
                                         {errors.name && <span className='input-error-message'>{errors.name.message}</span>}
-
+                                        <input
+                                            type="text"
+                                            placeholder='Client Email'
+                                            {...register('client', { required: "Client Email is required" })}
+                                        />
+                                        {errors.client && <span className='input-error-message'>{errors.client.message}</span>}
                                         <input
                                             type="datetime-local"
                                             placeholder='Deadline'
@@ -176,7 +193,7 @@ const Projects = () => {
                             {projectTasks.map((task, taskIndex) => (
                                 <div key={taskIndex} className="project-task">
                                     <b>{task.name}</b>
-                                    <p>Assigned Date: {task.created_at?.split('T')[0] + " " + task.created_at?.split('T')[1].split(':')[0] + ":" +  task.created_at?.split('T')[1].split(':')[1]}</p>
+                                    <p>Assigned Date: {task.created_at?.split('T')[0] + " " + task.created_at?.split('T')[1].split(':')[0] + ":" + task.created_at?.split('T')[1].split(':')[1]}</p>
                                     <p>Status: <span>{task.status}</span></p>
                                     <p>Timer: {task.timer || "Not started"}</p>
                                 </div>

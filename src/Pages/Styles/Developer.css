@@ -97,3 +97,17 @@
     border: 1px solid black;
     padding: 10px 15px;
 }
+
+.timer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timer button {
+    background-color: #001696;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 20px;
+}

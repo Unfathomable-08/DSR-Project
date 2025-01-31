@@ -26,14 +26,14 @@ export const Bar = () => {
                 plugins: {
                     legend: {
                         labels: {
-                            color: '#001696'
+                            color: '#001696',
                         }
                     }
                 },
                 scales: {
                     x: {
                         grid: {
-                            display: false
+                            display: true
                         },
                         border: {
                             color: '#001696'
@@ -44,7 +44,7 @@ export const Bar = () => {
                     },
                     y: {
                         grid: {
-                            display: false
+                            display: true
                         },
                         border: {
                             color: '#001696'
@@ -96,7 +96,7 @@ export const ChartLine = () => {
                 scales: {
                     x: {
                         grid: {
-                            display: false
+                            display: true
                         },
                         border: {
                             color: '#001696'
@@ -107,7 +107,7 @@ export const ChartLine = () => {
                     },
                     y: {
                         grid: {
-                            display: false
+                            display: true
                         },
                         border: {
                             color: '#001696'

@@ -4,9 +4,11 @@ import { Bar, ChartLine } from '../Components/Chart';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Sidebar from '../Components/Sidebar';
+import { useNavigate } from 'react-router-dom';
 
 const AdminPanel = () => {
   const [data, setdata] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(()=>{
     const fetchData = async () => {
@@ -17,14 +19,15 @@ const AdminPanel = () => {
             Authorization: `Bearer ${token}` 
           }
         })
-        console.log(res.data)
         setdata(res.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
+        navigate('/login');
       }
     }
     fetchData();
-  },[])
+  },[]);
+
   return (
     <div>
       <Sidebar/>
