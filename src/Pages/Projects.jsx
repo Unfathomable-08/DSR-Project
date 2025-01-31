@@ -52,7 +52,7 @@ const Projects = () => {
                                 Authorization: `Bearer ${token}`
                             }
                         });
-                        tasksData.push({ projectName: project.name, tasks: tasksRes.data });
+                        tasksData.push({ projectName: project.name, tasks: tasksRes.data.data });
                     }
                     setTasks(tasksData);
                 } catch (error) {

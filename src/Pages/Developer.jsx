@@ -49,13 +49,14 @@ const Developer = () => {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                setTasks(res.data);
+                setTasks(res.data.data);
             }
             catch (error) {
                 console.log(error);
             }
         }
         fetchData();
+        console.log(focusedProject)
     }, [focusedProject]);
 
     //timer functionality
@@ -149,7 +150,7 @@ const Developer = () => {
                     <h1>{focusedProject.name}</h1>
                     <b>Start Date: </b><span>{focusedProject.assigned_on?.split('T')[0] + " " + focusedProject.assigned_on?.split('T')[1].split(':')[0] + ":" + focusedProject.assigned_on?.split('T')[1].split(':')[1]}</span><br />
                     <b>End Date: </b><span>{focusedProject.deadline?.split('T')[0] + " " + focusedProject.deadline?.split('T')[1].split(':')[0] + ":" + focusedProject.deadline?.split('T')[1].split(':')[1]}</span><br />
-                    <b>Client: </b><span>{ }</span><br />
+                    <b>Client: </b><span>{ focusedProject.client }</span><br />
                     <b>Team Members: </b><span>{focusedProject.assigned_to?.join(', ')}</span><br />
                 </section>
             </section>
@@ -171,7 +172,7 @@ const Developer = () => {
                                     <tr key={index}>
                                         <td>{task.name}</td>
                                         <td>{task.created_at.split('T')[0] + " " + task.created_at.split('T')[1].split(':')[0] + ':' + task.created_at.split('T')[1].split(':')[1]}</td>
-                                        <td>{task.flag}</td>
+                                        <td>{task.status}</td>
                                         <td>
                                             <div className="timer">
                                                 <div>{getTimerDisplay(task.id)}</div>
