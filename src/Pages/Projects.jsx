@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar";
 import "./Styles/Projects.css";
 import axios from "axios";
 import { UserEmail } from "../Context";
+import Sidebar from "../Components/Sidebar";
 
 const Projects = () => {
     const [showForm, setShowForm] = useState(false);
@@ -82,6 +83,7 @@ const Projects = () => {
 
     return (
         <>
+            <Sidebar/>
             <Navbar />
             <div>
                 <section className="project-section-container">

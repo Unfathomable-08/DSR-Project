@@ -84,7 +84,7 @@ export const ChartLine = () => {
                 }]
             },
             options: {
-                aspectRatio: 2,
+                aspectRatio: 1.6,
                 responsive: true,
                 plugins: {
                     legend: {

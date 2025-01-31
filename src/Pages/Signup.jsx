@@ -14,15 +14,6 @@ const Signup = () => {
   };
 
   useEffect(() => {
-    //removing sidebar
-    const sidebar = document.getElementById('sidebar');
-    sidebar.style.display = 'none';
-
-    const app = document.getElementById('app-cont');
-    app.style.width = '100vw';
-    app.style.marginLeft = '0px';
-
-    //fetching
     const fetchData = async () => {
       if (formData !== "") {
         if (formData.password == formData.rePassword){

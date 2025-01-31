@@ -1,10 +1,33 @@
 import './Styles/AdminPanel.css';
 import Navbar from '../Components/Navbar';
 import { Bar, ChartLine } from '../Components/Chart';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Sidebar from '../Components/Sidebar';
 
 const AdminPanel = () => {
+  const [data, setdata] = useState([]);
+
+  useEffect(()=>{
+    const fetchData = async () => {
+      const token = localStorage.getItem('token');
+      try {
+        const res = await axios.get('http://127.0.0.1:8000/users/all/', {
+          headers: {
+            Authorization: `Bearer ${token}` 
+          }
+        })
+        console.log(res.data)
+        setdata(res.data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchData();
+  },[])
   return (
     <div>
+      <Sidebar/>
       <Navbar />
       <div className="admin-cont">
         <div className="bar admin">
@@ -21,19 +44,19 @@ const AdminPanel = () => {
       <div className="bottomBoxes">
         <div className="squareBox">
             <b>Total Dev</b>
-            <b>08</b>
+            <b>{ data.total_developers }</b>
         </div>
         <div className="squareBox">
             <b>Total Team Lead</b>
-            <b>03</b>
+            <b>{ data.total_leads }</b>
         </div>
         <div className="squareBox">
             <b>Total Client</b>
-            <b>10</b>
+            <b>{ data.total_clients }</b>
         </div>
         <div className="squareBox">
             <b>Total Projects</b>
-            <b>20</b>
+            <b>{ data.total_projects }</b>
         </div>
       </div>
     </div>

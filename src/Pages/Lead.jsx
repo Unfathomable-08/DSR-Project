@@ -5,6 +5,7 @@ import './Styles/Lead.css';
 import axios from 'axios';
 import { UserEmail } from '../Context';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../Components/Sidebar';
 
 const Lead = () => {
     const navigate = useNavigate();
@@ -53,6 +54,7 @@ const Lead = () => {
 
     return (
         <>
+            <Sidebar/>
             <Navbar />
             <div className='add-project-cont'>
                 <div className="add-project">

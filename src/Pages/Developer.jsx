@@ -3,6 +3,7 @@ import './Styles/Developer.css'
 import img from '../assets/avatar2.jpg'
 import axios from 'axios';
 import Navbar from '../Components/Navbar'
+import Sidebar from '../Components/Sidebar';
 
 const Developer = () => {
     const [data, setData] = useState([]);
@@ -50,6 +51,7 @@ const Developer = () => {
 
   return (
     <div>
+        <Sidebar/>
         <Navbar/>
       <section className='project-header'>
         <img src={img} alt="" />

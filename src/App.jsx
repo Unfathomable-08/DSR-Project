@@ -35,12 +35,11 @@ const App = () => {
             <PopUpOpened.Provider value={[isPopUpOpened, setIsPopUpOpened]}>
               <UserName.Provider value={[userName, setUserName]}>
                   <Routes>
-                    <Route path='/' element={<Home/>}/>
+                    <Route path='/' element={<AdminPanel/>}/>
                     <Route path='/login' element={<Login/>}/>
                     <Route path='/signup' element={<Signup/>}/>
                     <Route path='/forgetPassword' element={<ForgetPassword/>}/>
                     <Route path='/resetPassword' element={<ChangePassword/>}/>
-                    <Route path='/lead/addProject' element={<Lead/>}/>
                     <Route path='/admin' element={<AdminPanel/>}/>
                     <Route path='/developer' element={<Developer/>}/>
                     <Route path='/projects' element={<Projects/>}/>

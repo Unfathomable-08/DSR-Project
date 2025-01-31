@@ -11,7 +11,7 @@ const Navbar = () => {
   const [userName] = useContext(UserName);
   const [userPosition] = useContext(UserPosition);
 
-  const [sidebarOpened, setSidebarOpened] = useContext(SidebarContext)
+  const [, setSidebarOpened] = useContext(SidebarContext)
 
   const profileOptionRef = useRef(null);
 
@@ -20,8 +20,7 @@ const Navbar = () => {
   };
 
   const toggleSidebar = () => {
-    const sidebar = document.getElementById('sidebar');
-    sidebar.classList.toggle("hidden");
+    setSidebarOpened(prev => !prev);
   }
 
   const logout = () => {
@@ -30,40 +29,43 @@ const Navbar = () => {
   }
 
   return (
-    <div className='navbar'>
-      <div className='navbar-left'>
-        <button onClick={toggleSidebar} className='sidebar-toggler-btn'><i className="fa-solid fa-bars"></i></button>
-        <h1>LMS Portal</h1>
-      </div>
-      <nav>
-        <button onClick={logout} className='signout'>Logout</button>
-        <button onClick={toggleProfile} className='profile'><i className="fa-solid fa-user"></i></button>
-      </nav>
-      <div ref={profileOptionRef} className="profile-options hidden">
-        <div className="project-head">
-          <h3>{ userName }</h3>
+    <div className="navbar-cont">
 
+      <div className='navbar'>
+        <div className='navbar-left'>
+          <button onClick={toggleSidebar} className='sidebar-toggler-btn'><i className="fa-solid fa-bars"></i></button>
+          <h1>LMS Portal</h1>
         </div>
-        <p className="profile-position">{ userPosition }</p>
-        <ul>
-          <li>
-            <p>Manage Accounts</p><i className="fa-solid fa-user"></i>
-          </li>
-          {userPosition == "lead" &&
+        <nav>
+          <button onClick={logout} className='signout'>Logout</button>
+          <button onClick={toggleProfile} className='profile'><i className="fa-solid fa-user"></i></button>
+        </nav>
+        <div ref={profileOptionRef} className="profile-options hidden">
+          <div className="project-head">
+            <h3>{ userName }</h3>
+
+          </div>
+          <p className="profile-position">{ userPosition }</p>
+          <ul>
             <li>
-              <p><Link to="/lead/addproject" className='link-profile'>Add Projects</Link></p><i className="fa-solid fa-bars-progress"></i>
+              <p>Manage Accounts</p><i className="fa-solid fa-user"></i>
             </li>
-          }
-          <li>
-            <p><Link to='/resetPassword' className='link-profile'>Reset Password</Link></p><i className="fa-solid fa-lock"></i>
-          </li>
-          <li>
-            <p><button className='logout-panel-btn' onClick={logout}>Logout</button></p><i style={{paddingRight: '2px'}} className="fa-solid fa-right-from-bracket"></i>
-          </li>
-          <li>
-            <p>Delete Account</p><i style={{color: '#ff4422'}} className="fa-solid fa-trash"></i>
-          </li>
-        </ul>
+            {userPosition == "lead" &&
+              <li>
+                <p><Link to="/lead/addproject" className='link-profile'>Add Projects</Link></p><i className="fa-solid fa-bars-progress"></i>
+              </li>
+            }
+            <li>
+              <p><Link to='/resetPassword' className='link-profile'>Reset Password</Link></p><i className="fa-solid fa-lock"></i>
+            </li>
+            <li>
+              <p><button className='logout-panel-btn' onClick={logout}>Logout</button></p><i style={{paddingRight: '2px'}} className="fa-solid fa-right-from-bracket"></i>
+            </li>
+            <li>
+              <p>Delete Account</p><i style={{color: '#ff4422'}} className="fa-solid fa-trash"></i>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   )

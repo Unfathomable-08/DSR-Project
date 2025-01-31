@@ -6,6 +6,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0 !important;
+}
+
+.navbar-cont {
+    position: relative;
+    height: 70px;
+    width: 100%;
 }
 
 .navbar h1 {
@@ -111,10 +118,6 @@
     border: none;
     padding-right: 45px !important;
     transform: translateY(2px);
-}
-
-.sidebar-toggler-btn {
-    display: none;
 }
 
 @media (max-width:700px) {

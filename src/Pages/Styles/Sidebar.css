@@ -42,3 +42,12 @@
     text-decoration: none;
     display: block;
   }
+
+  .fa-arrow-left {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    padding: 5px 6px;
+  }

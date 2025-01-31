@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import AddTask from '../Components/AddTask'
 import { PopUpOpened, UserName, UserPosition, UserEmail } from '../Context'
 import ViewTask from '../Components/ViewTask'
+import Sidebar from '../Components/Sidebar'
 
 const Home = () => {
   //featch url
@@ -93,6 +94,7 @@ const Home = () => {
   
   return (
     <>
+    <Sidebar/>
     <Navbar/>
     <div>
             <h1 className='project-heading'>Projects</h1>
