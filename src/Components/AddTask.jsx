@@ -101,6 +101,16 @@ const AddTask = (props) => {
           })}
           />
           {errors.details && <p className='error'>{errors.details.message}</p>}
+        <select
+          {...register('flag', {
+            required: "Status is required"
+          })}
+        >
+          <option value="yellow">Pending</option>
+          <option value="red">In Progress</option>
+          <option value="green">Completed</option>
+        </select>
+          {errors.details && <p className='error'>{errors.details.message}</p>}
         <input
           type="datetime-local"
           placeholder='Time to complete'

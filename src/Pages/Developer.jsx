@@ -4,10 +4,14 @@ import img from '../assets/avatar2.jpg'
 import axios from 'axios';
 import Navbar from '../Components/Navbar'
 import Sidebar from '../Components/Sidebar';
-import { PopUpOpened } from '../Context';
+import { PopUpOpened, UserEmail, UserName, UserPosition } from '../Context';
 import AddTask from '../Components/AddTask';
 
 const Developer = () => {
+    const [, setUserEmail] = useContext(UserEmail);
+    const [, setUserName] = useContext(UserName);
+    const [, setUserPosition] = useContext(UserPosition);
+
     const [data, setData] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [focusedProject, setFocusedProject] = useState({})
@@ -24,7 +28,6 @@ const Developer = () => {
         //
     },[isRunning])
 
-
     //fetching projects
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -37,6 +40,9 @@ const Developer = () => {
                         }
                     });
                     setData(res.data.data)
+                    setUserEmail(res.data.user_email);
+                    setUserName(res.data.user_name);
+                    setUserPosition(res.data.user_role);
                 } catch (error) {
                     alert('An error occurred while sending data!')
                     console.error(error);
@@ -63,7 +69,6 @@ const Developer = () => {
             }
         }
         fetchData();
-        console.log(focusedProject)
     }, [focusedProject]);
 
     //timer functionality
@@ -217,7 +222,7 @@ const Developer = () => {
                                     <tr key={index}>
                                         <td>{task.name}</td>
                                         <td>{task.created_at.split('T')[0] + " " + task.created_at.split('T')[1].split(':')[0] + ':' + task.created_at.split('T')[1].split(':')[1]}</td>
-                                        <td>{task.status}</td>
+                                        <td>{task.flag}</td>
                                         <td>
                                             <div className="timer">
                                                 <div>{getTimerDisplay(task.id)}</div>

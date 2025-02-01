@@ -13,7 +13,7 @@ const Projects = () => {
     const [tasks, setTasks] = useState([]);
     const [formData, setFormData] = useState('');
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
-    const { fields, append, remove } = useFieldArray({ control, name: "assigned_to" });
+    const { fields, append, remove } = useFieldArray({ control, name: "assigned_to" }); // Keep name but the array is just without the "name" part
 
     const [userEmail, setUserEmail] = useContext(UserEmail);
     const [, setUserName] = useContext(UserName);
@@ -27,7 +27,6 @@ const Projects = () => {
         setShowForm(false);
     };
 
-    // Fetch projects and tasks for each project
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -38,13 +37,11 @@ const Projects = () => {
                             'Authorization': `Bearer ${token}`
                         }
                     });
-                    console.log(res.data)
-                    setUserEmail(res.data.user_email)
-                    setUserName(res.data.user_name)
-                    setUserPosition(res.data.user_role)
+                    setUserEmail(res.data.user_email);
+                    setUserName(res.data.user_name);
+                    setUserPosition(res.data.user_role);
                     setData(res.data.data);
 
-                    // Fetch tasks for each project
                     const tasksData = [];
                     for (let project of res.data.data) {
                         const tasksRes = await axios.get(`http://127.0.0.1:8000/users/task/?project=${project.name}`, {
@@ -57,33 +54,26 @@ const Projects = () => {
                     setTasks(tasksData);
                 } catch (error) {
                     alert('An error occurred while sending data!');
-                    console.error(error);
-                    navigate('/login')
+                    navigate('/login');
                 }
             };
             fetchData();
-            console.log(userEmail)
-            console.log(userPosition)
         }
     }, []);
 
-    //adding projects
-
     useEffect(() => {
         if (formData !== "") {
-            console.log(formData)
             const token = localStorage.getItem('token');
             const fetchData = async () => {
+                console.log(formData)
                 try {
-                    console.log(formData)
-                    const res = await axios.post('http://127.0.0.1:8000/users/projects/', data, {
+                    const res = await axios.post('http://127.0.0.1:8000/users/projects/', formData, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
                     });
-                    console.log(res)
-                    if (res.status == 201) {
-                        //
+                    if (res.status === 201) {
+                        // Handle success
                     }
                 } catch (error) {
                     console.log(error);
@@ -115,7 +105,7 @@ const Projects = () => {
                                         <input
                                             type="hidden"
                                             value={userEmail}
-                                            {...register('assigned_by', { required: true })}  
+                                            {...register('assigned_by', { required: true })}
                                         />
                                         <input
                                             type="text"
@@ -135,7 +125,6 @@ const Projects = () => {
                                             {...register('deadline', { required: "Deadline is required" })}
                                         />
                                         {errors.deadline && <span className='input-error-message'>{errors.deadline.message}</span>}
-
                                         <textarea
                                             placeholder='Enter Description ...'
                                             {...register('description', { required: "Description is required" })}
@@ -149,7 +138,7 @@ const Projects = () => {
                                             {fields.map((item, index) => (
                                                 <div key={item.id} className="assigned-member-row">
                                                     <input
-                                                        {...register(`assigned_to[${index}].name`)}
+                                                        {...register(`assigned_to[${index}]`)} // Just referencing the array object directly
                                                         type="text"
                                                         placeholder="Assigned Name"
                                                     />
@@ -165,7 +154,7 @@ const Projects = () => {
                                         </div>
                                         <button
                                             type="button"
-                                            onClick={() => append({ name: "" })}
+                                            onClick={() => append({})} // Appending an empty object for each new member
                                             className='assigned-add-button'
                                         >
                                             Add More
@@ -180,10 +169,10 @@ const Projects = () => {
                     </section>
                 )}
             </div>
+
             <section className="existing-projects-container">
                 <h1>Existing Projects</h1>
                 {data.map((project, index) => {
-                    // Find tasks for the current project using project name
                     const projectTasks = tasks.find(task => task.projectName === project.name)?.tasks || [];
                     return (
                         <div key={index} className="project-card">
