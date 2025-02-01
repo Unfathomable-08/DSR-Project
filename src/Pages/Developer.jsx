@@ -187,7 +187,7 @@ const Developer = () => {
                         })
                     }
                 </section>
-                <section className={`project-details ${focusedProject.name ? '' : 'hidden'}`}>
+                <section className={`project-details ${Object.keys(focusedProject).length === 0 ? 'hidden' : ''}`}>
                     <h1>{focusedProject.name}</h1>
                     <b>Start Date: </b><span>{focusedProject.assigned_on?.split('T')[0] + " " + focusedProject.assigned_on?.split('T')[1].split(':')[0] + ":" + focusedProject.assigned_on?.split('T')[1].split(':')[1]}</span><br />
                     <b>End Date: </b><span>{focusedProject.deadline?.split('T')[0] + " " + focusedProject.deadline?.split('T')[1].split(':')[0] + ":" + focusedProject.deadline?.split('T')[1].split(':')[1]}</span><br />
@@ -195,7 +195,7 @@ const Developer = () => {
                     <b>Team Members: </b><span>{focusedProject.assigned_to?.join(', ')}</span><br />
                 </section>
             </section>
-            <section className='project-tasks'>
+            <section className={`project-tasks ${Object.keys(focusedProject).length === 0 ? 'hidden' : ''}`}>
                 <div className="tasks-head">
                     <h1>Tasks</h1>
                     <button onClick={addTask}>Add Task</button>

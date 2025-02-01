@@ -7,7 +7,7 @@
 
 .project-header img {
     height: 70%;
-    margin-right: 80px;
+    margin-right: 70px;
 }
 
 .project-header>div {
@@ -40,7 +40,7 @@
 .projects-grid {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    padding: 10px 80px;
+    padding: 10px 70px;
     gap: 15px;
 }
 
@@ -66,7 +66,7 @@
 }
 
 .project-tasks {
-    margin: 20px 80px;
+    margin: 20px 70px;
     padding: 20px 35px;
     background-color: white;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -144,4 +144,85 @@
     padding: 8px 25px;
     border: none;
     border-radius: 10px;
+}
+
+@media (max-width: 1200px) {
+    .projects-grid {
+        grid-template-columns: 5fr 2fr;
+    }
+}
+
+@media (max-width: 980px) {
+    .project-details {
+        padding: 10px;
+        line-height: 25px;
+    }
+    .action-btn, .timer {
+        flex-direction: column;
+        gap: 4px;
+    }
+    .project-header {
+        padding: 0 70px;
+    }
+}
+
+@media (max-width: 840px) {
+    .project-header img {
+        margin-right: 20px;
+    }
+    .projects-grid {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
+@media (max-width: 786px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .project-details {
+        padding: 20px;
+        margin: 0 10px;
+        line-height: 30px;
+    }
+    .project-header img {
+        display: none;
+    }
+    .project-tasks table tr {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid black;
+        border-radius: 10px;
+    }
+    .project-tasks table tr td {
+        width: 90%;
+        border: none;
+    }
+    .project-tasks table thead {
+        display: none;
+    }
+    .action-btn, .timer {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+    }
+    .action-btn button, .timer div, .timer button {
+        width: 100px;
+    }
+    .timer div {
+        display: flex;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 650px) {
+    .project-header>div {
+        padding: 8px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 550px) {
+    .project-header>div:nth-child(3) {
+        display: none;
+    }
 }
