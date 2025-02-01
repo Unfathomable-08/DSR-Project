@@ -48,3 +48,10 @@
     background-color: #001696;
     color: white;
 }
+
+.status-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+}

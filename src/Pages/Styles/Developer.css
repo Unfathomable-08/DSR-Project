@@ -27,7 +27,6 @@
 }
 
 .projects-names>div {
-    background-color: #aaa;
     border-radius: 10px;
     margin: 10px;
     padding: 10px 20px;
@@ -144,6 +143,18 @@
     padding: 8px 25px;
     border: none;
     border-radius: 10px;
+}
+
+.pending {
+    background-color: rgb(255, 195, 156);
+}
+
+.completed {
+    background-color: rgb(162, 255, 193);
+}
+
+.progress {
+    background-color: #8295ff;
 }
 
 @media (max-width: 1200px) {

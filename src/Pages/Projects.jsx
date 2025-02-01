@@ -138,9 +138,10 @@ const Projects = () => {
                                             {fields.map((item, index) => (
                                                 <div key={item.id} className="assigned-member-row">
                                                     <input
-                                                        {...register(`assigned_to[${index}]`)} // Just referencing the array object directly
+                                                        {...register(`assigned_to[${index}]`)}
                                                         type="text"
                                                         placeholder="Assigned Name"
+                                                        defaultValue=""
                                                     />
                                                     <button
                                                         type="button"
@@ -154,7 +155,7 @@ const Projects = () => {
                                         </div>
                                         <button
                                             type="button"
-                                            onClick={() => append({})} // Appending an empty object for each new member
+                                            onClick={() => append()} // Appending an empty object for each new member
                                             className='assigned-add-button'
                                         >
                                             Add More

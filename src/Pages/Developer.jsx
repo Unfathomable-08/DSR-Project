@@ -17,16 +17,28 @@ const Developer = () => {
     const [focusedProject, setFocusedProject] = useState({})
     const [focusedTask, setFocusedTask] = useState({})
     const [timers, setTimers] = useState({});
-    const [isRunning, setIsRunning] = useState(false);
-
+    
     const [showAddTask, setShowAddTask] = useState(false);
     const [showEditTask, setShowEditTask] = useState(false);
     const [, setIsPopUpOpened] = useContext(PopUpOpened);
 
     //fetching timer
-    useEffect(()=>{
-        //
-    },[isRunning])
+    const fetchTimimg = async(taskId) => {
+        const timeTaken = tasks.filter((task) => task.id == taskId)[0].time_taken;
+        try {
+            console.log({time_taken: timers[taskId].elapsed + timeTaken});
+            const token = localStorage.getItem('token');
+            await axios.patch(`http://127.0.0.1:8000/users/task/?id=${taskId}`, {
+                time_taken: timers[taskId].elapsed + timeTaken
+            }, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     //fetching projects
     useEffect(() => {
@@ -78,7 +90,7 @@ const Developer = () => {
             const task = prev[taskId] || {};
             if (task.isRunning) {
                 clearInterval(task.intervalId); // Stop the interval when stopping the timer
-                setIsRunning(false);
+                fetchTimimg(taskId);
                 return { ...prev, [taskId]: { ...task, isRunning: false, intervalId: null } };
             } else {
                 const intervalId = setInterval(() => {
@@ -90,7 +102,6 @@ const Developer = () => {
                                 [taskId]: { ...updatedTask, elapsed: updatedTask.elapsed + 1 }
                             };
                         }
-                        setIsRunning(true);
                         return prevTimers;
                     });
                 }, 1000); // Update every second
@@ -104,9 +115,10 @@ const Developer = () => {
     };
 
     const getTimerDisplay = (taskId) => {
+        const timeTaken = tasks.filter((task) => task.id == taskId)[0].time_taken;
         const timer = timers[taskId];
-        if (!timer) return formatTime(0); // Default to 00:00 if no timer exists
-        return formatTime(timer.elapsed); // Display the time accumulated
+        if (!timer) return formatTime(timeTaken);
+        return formatTime(timer.elapsed + timeTaken); // Display the time accumulated
     };
 
     const formatTime = (seconds) => {
@@ -185,7 +197,7 @@ const Developer = () => {
                     {
                         data.map((data, index) => {
                             return (
-                                <div key={index} onClick={() => setFocusedProject(data)}>
+                                <div key={index} onClick={() => setFocusedProject(data)} className={data.status}>
                                     {data.name}
                                 </div>
                             )

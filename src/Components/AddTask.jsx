@@ -39,6 +39,7 @@ const AddTask = (props) => {
             }
           }
           else {
+            console.log(formData)
             const res = await axios.patch(`http://127.0.0.1:8000/users/task/?id=${props.edit.id}`, formData, {
               headers: {
                 Authorization: `Bearer ${token}`
@@ -102,6 +103,7 @@ const AddTask = (props) => {
           />
           {errors.details && <p className='error'>{errors.details.message}</p>}
         <select
+        className='status-select'
           {...register('flag', {
             required: "Status is required"
           })}
