@@ -26,6 +26,7 @@ const AddTask = (props) => {
       const fetchData = async () => {
         try {
           if(props.action == "add"){
+            console.log(formData)
             const res = await axios.post('http://127.0.0.1:8000/users/task/', formData, {
               headers: {
                 Authorization: `Bearer ${token}`
@@ -34,6 +35,7 @@ const AddTask = (props) => {
             if (res.status == 201){
               setIsPopUpOpened(false);
               props.setState(false);
+              navigate('/developer')
             }
           }
           else {
@@ -42,10 +44,11 @@ const AddTask = (props) => {
                 Authorization: `Bearer ${token}`
               }
             });
+            console.log(res)
             if (res.status == 200){
               setIsPopUpOpened(false);
               props.setState(false);
-              navigate('/')
+              navigate('/developer')
             }
           }
         }
@@ -83,7 +86,7 @@ const AddTask = (props) => {
         <input
           type="text"
           placeholder='Task Title'
-          defaultValue={props.action == "edit" && props.edit.name}
+          defaultValue={props.action == "edit" ? props.edit.name : ''}
           {...register('name', {
             required: "Title is required"
           })}
@@ -92,7 +95,7 @@ const AddTask = (props) => {
         <input
           type="text"
           placeholder='Description'
-          defaultValue={props.action == "edit" && props.edit.details}
+          defaultValue={props.action == "edit" ? props.edit.details : ''}
           {...register('details', {
             required: "Description is required"
           })}
@@ -101,7 +104,7 @@ const AddTask = (props) => {
         <input
           type="datetime-local"
           placeholder='Time to complete'
-          defaultValue={props.action === "edit" && props.edit.time_to_complete ? props.edit.time_to_complete.slice(0, 16) : ''}
+          defaultValue={props.action === "edit" ? props.edit.time_to_complete ? props.edit.time_to_complete.slice(0, 16) : '' : ''}
           {...register('time_to_complete', {
             required: "This field is required"
           })}

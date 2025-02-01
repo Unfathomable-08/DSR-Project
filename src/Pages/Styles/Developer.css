@@ -80,7 +80,7 @@
 }
 
 .project-tasks table td, .project-tasks table th {
-    width: 25%;
+    width: 20%;
 }
 
 .project-tasks h1 {
@@ -110,4 +110,38 @@
     border: none;
     border-radius: 5px;
     padding: 4px 20px;
+}
+
+.action-btn {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.action-btn button {
+    background-color: #001696;
+    color: white;
+    padding: 4px 15px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.action-btn button:first-child {
+    padding: 4px 22px;
+}
+
+.tasks-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.tasks-head button {
+    background-color: #001696;
+    color: white;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 10px;
 }
