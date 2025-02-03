@@ -73,15 +73,15 @@ const Projects = () => {
             if (formData !== "") {
                 const token = localStorage.getItem('token');
                 const fetchData = async () => {
-                    console.log(formData)
                     try {
+                        console.log(formData)
                         const res = await axios.post('http://127.0.0.1:8000/users/projects/', formData, {
                             headers: {
                                 Authorization: `Bearer ${token}`
                             }
                         });
                         if (res.status === 201) {
-                            // Handle success
+                            setData(prev => [...prev, formData])
                         }
                     } catch (error) {
                         console.log(error);
@@ -103,7 +103,7 @@ const Projects = () => {
                             }
                         });
                         if (res.status === 201) {
-                            // Handle success
+                            setData(prev => [...prev, formData])
                         }
                     } catch (error) {
                         console.log(error);
@@ -122,7 +122,6 @@ const Projects = () => {
     const deleteProject = async (project) => {
         try {
             const token = localStorage.getItem('token');
-            console.log('runned')
             const res = await axios.delete('http://127.0.0.1:8000/users/projects/', {
                 headers: {
                     Authorization: `Bearer ${token}`
@@ -131,7 +130,9 @@ const Projects = () => {
                     name: project.name
                 }
             });
-            console.log(res)
+            if (res.status === 204){
+                setData(prev => prev.filter(data => data.name !== project.name));
+            }
         } catch (error) {
             console.log(error)
         }

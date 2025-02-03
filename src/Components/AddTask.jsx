@@ -3,10 +3,8 @@ import '../Pages/Styles/AddTask.css'
 import { useForm } from 'react-hook-form'
 import { PopUpOpened, UserEmail } from '../Context'
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 
 const AddTask = (props) => {
-  const navigate = useNavigate();
 
   const [userEmail] = useContext(UserEmail);
 
@@ -35,7 +33,7 @@ const AddTask = (props) => {
             if (res.status == 201){
               setIsPopUpOpened(false);
               props.setState(false);
-              navigate('/developer')
+              props.closeFocused({});
             }
           }
           else {
@@ -49,7 +47,7 @@ const AddTask = (props) => {
             if (res.status == 200){
               setIsPopUpOpened(false);
               props.setState(false);
-              navigate('/developer')
+              props.closeFocused({});
             }
           }
         }

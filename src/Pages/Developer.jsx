@@ -256,8 +256,8 @@ const Developer = () => {
                     </tbody>
                 </table>
             </section>
-            {showAddTask && <AddTask setState={setShowAddTask} project={focusedProject.name} action="add"/>}
-            {showEditTask && <AddTask setState={setShowEditTask} project={focusedProject.name} action="edit" edit={focusedTask}/>}
+            {showAddTask && <AddTask setState={setShowAddTask} project={focusedProject.name} closeFocused={setFocusedProject} action="add"/>}
+            {showEditTask && <AddTask setState={setShowEditTask} project={focusedProject.name} closeFocused={setFocusedProject} action="edit" edit={focusedTask}/>}
         </div>
     )
 }
