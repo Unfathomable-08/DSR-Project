@@ -164,6 +164,11 @@
     color: #444;
 }
 
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+
 @media (max-width: 640px) {
     .project-form-grid {
         grid-template-columns: 1fr;

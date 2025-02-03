@@ -9,16 +9,18 @@ import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
     const [showForm, setShowForm] = useState(false);
+    const [focused, setFocused] = useState({});
+    const [addOrEdit, setAddOrEdit] = useState('add');
     const [data, setData] = useState([]);
     const [tasks, setTasks] = useState([]);
     const [formData, setFormData] = useState('');
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
-    const { fields, append, remove } = useFieldArray({ control, name: "assigned_to" }); // Keep name but the array is just without the "name" part
+    const { fields, append, remove } = useFieldArray({ control, name: "assigned_to" }); 
 
     const [userEmail, setUserEmail] = useContext(UserEmail);
     const [, setUserName] = useContext(UserName);
-    const [userPosition, setUserPosition] = useContext(UserPosition)
-    
+    const [, setUserPosition] = useContext(UserPosition)
+
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
@@ -26,6 +28,8 @@ const Projects = () => {
         reset();
         setShowForm(false);
     };
+
+    //get projects
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -53,6 +57,7 @@ const Projects = () => {
                     }
                     setTasks(tasksData);
                 } catch (error) {
+                    console.log(error)
                     alert('An error occurred while sending data!');
                     navigate('/login');
                 }
@@ -61,28 +66,85 @@ const Projects = () => {
         }
     }, []);
 
+    //add projects
+
     useEffect(() => {
-        if (formData !== "") {
-            const token = localStorage.getItem('token');
-            const fetchData = async () => {
-                console.log(formData)
-                try {
-                    const res = await axios.post('http://127.0.0.1:8000/users/projects/', formData, {
-                        headers: {
-                            Authorization: `Bearer ${token}`
+        if(addOrEdit == 'add'){
+            if (formData !== "") {
+                const token = localStorage.getItem('token');
+                const fetchData = async () => {
+                    console.log(formData)
+                    try {
+                        const res = await axios.post('http://127.0.0.1:8000/users/projects/', formData, {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        });
+                        if (res.status === 201) {
+                            // Handle success
                         }
-                    });
-                    if (res.status === 201) {
-                        // Handle success
+                    } catch (error) {
+                        console.log(error);
+                        alert("An error occurred while submitting data");
                     }
-                } catch (error) {
-                    console.log(error);
-                    alert("An error occurred while submitting data");
-                }
-            };
-            fetchData();
+                };
+                fetchData();
+            }
+        }
+        else {
+            if (formData !== "") {
+                const token = localStorage.getItem('token');
+                const fetchData = async () => {
+                    console.log(formData)
+                    try {
+                        const res = await axios.patch('http://127.0.0.1:8000/users/projects/', formData, {
+                            headers: {
+                                Authorization: `Bearer ${token}`
+                            }
+                        });
+                        if (res.status === 201) {
+                            // Handle success
+                        }
+                    } catch (error) {
+                        console.log(error);
+                        alert("An error occurred while submitting data");
+                    }
+                };
+                fetchData();
+                setFocused({});
+            }
+
         }
     }, [formData]);
+
+    //delete projects
+
+    const deleteProject = async (project) => {
+        try {
+            const token = localStorage.getItem('token');
+            console.log('runned')
+            const res = await axios.delete('http://127.0.0.1:8000/users/projects/', {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                data: {
+                    name: project.name
+                }
+            });
+            console.log(res)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    //edit project
+
+    const editProject = (project) => {
+        reset();
+        setFocused(project);
+        setShowForm(true);
+        setAddOrEdit('edit')
+    }
 
     return (
         <>
@@ -91,7 +153,15 @@ const Projects = () => {
             <div>
                 <section className="project-section-container">
                     <h1>Projects</h1>
-                    <button className="project-add-button" onClick={() => setShowForm(!showForm)}>
+                    <button
+                        className="project-add-button"
+                        onClick={() => {
+                            setFocused({});
+                            setShowForm(!showForm);
+                            reset();
+                            setAddOrEdit('add');
+                        }}
+                    >
                         {showForm ? "Cancel" : "Add Project"}
                     </button>
                 </section>
@@ -110,23 +180,27 @@ const Projects = () => {
                                         <input
                                             type="text"
                                             placeholder='Project Name'
+                                            defaultValue={focused?.name || ''}
                                             {...register('name', { required: "Project Name is required" })}
                                         />
                                         {errors.name && <span className='input-error-message'>{errors.name.message}</span>}
                                         <input
                                             type="text"
                                             placeholder='Client Email'
+                                            defaultValue={focused?.client || ''}
                                             {...register('client', { required: "Client Email is required" })}
                                         />
                                         {errors.client && <span className='input-error-message'>{errors.client.message}</span>}
                                         <input
                                             type="datetime-local"
                                             placeholder='Deadline'
+                                            defaultValue={focused?.deadline && focused.deadline.slice(0, 16) || ''}
                                             {...register('deadline', { required: "Deadline is required" })}
                                         />
                                         {errors.deadline && <span className='input-error-message'>{errors.deadline.message}</span>}
                                         <textarea
                                             placeholder='Enter Description ...'
+                                            defaultValue={focused?.description || ''}
                                             {...register('description', { required: "Description is required" })}
                                         />
                                         {errors.description && <span className='input-error-message'>{errors.description.message}</span>}
@@ -141,7 +215,7 @@ const Projects = () => {
                                                         {...register(`assigned_to[${index}]`)}
                                                         type="text"
                                                         placeholder="Assigned Name"
-                                                        defaultValue=""
+                                                        defaultValue={focused != "" && focused.assigned_to[index]}
                                                     />
                                                     <button
                                                         type="button"
@@ -177,7 +251,13 @@ const Projects = () => {
                     const projectTasks = tasks.find(task => task.projectName === project.name)?.tasks || [];
                     return (
                         <div key={index} className="project-card">
-                            <h2>{project.name}</h2>
+                            <div className="btns">
+                                <h2>{project.name}</h2>
+                                <div>
+                                    <button onClick={() => editProject(project)}>Edit</button>
+                                    <button onClick={() => deleteProject(project)}>Delete</button>
+                                </div>
+                            </div>
                             <p className="project-status">Status: <span>{project.status}</span></p>
 
                             {projectTasks.map((task, taskIndex) => (
