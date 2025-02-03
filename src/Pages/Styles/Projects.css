@@ -169,6 +169,13 @@
     justify-content: space-between;
 }
 
+.btns button {
+    background-color: transparent;
+    border: none;
+    font-size: 18px;
+    margin: 0 5px;
+}
+
 @media (max-width: 640px) {
     .project-form-grid {
         grid-template-columns: 1fr;

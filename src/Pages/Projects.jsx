@@ -215,7 +215,7 @@ const Projects = () => {
                                                         {...register(`assigned_to[${index}]`)}
                                                         type="text"
                                                         placeholder="Assigned Name"
-                                                        defaultValue={focused != "" && focused.assigned_to[index]}
+                                                        defaultValue={focused?.assigned_to && focused?.assigned_to[index] || ''}
                                                     />
                                                     <button
                                                         type="button"
@@ -254,8 +254,8 @@ const Projects = () => {
                             <div className="btns">
                                 <h2>{project.name}</h2>
                                 <div>
-                                    <button onClick={() => editProject(project)}>Edit</button>
-                                    <button onClick={() => deleteProject(project)}>Delete</button>
+                                    <button onClick={() => editProject(project)}><i className="fa-solid fa-pen-to-square" style={{color: 'green'}}></i></button>
+                                    <button onClick={() => deleteProject(project)}><i className="fa-solid fa-trash" style={{color: '#dd0000'}}></i></button>
                                 </div>
                             </div>
                             <p className="project-status">Status: <span>{project.status}</span></p>
