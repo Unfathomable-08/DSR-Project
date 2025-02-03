@@ -3,9 +3,10 @@ import { useForm, useFieldArray } from "react-hook-form";
 import Navbar from "../Components/Navbar";
 import "./Styles/Projects.css";
 import axios from "axios";
-import { UserEmail, UserName, UserPosition } from "../Context";
+import { PopUpOpened, UserEmail, UserName, UserPosition } from "../Context";
 import Sidebar from "../Components/Sidebar";
 import { useNavigate } from "react-router-dom";
+import Details from "../Components/Details";
 
 const Projects = () => {
     const [showForm, setShowForm] = useState(false);
@@ -19,7 +20,10 @@ const Projects = () => {
 
     const [userEmail, setUserEmail] = useContext(UserEmail);
     const [, setUserName] = useContext(UserName);
-    const [, setUserPosition] = useContext(UserPosition)
+    const [, setUserPosition] = useContext(UserPosition);
+
+    const [showDetails, setShowDetails] = useState(false);
+    const [, setIsPopUpOpened] = useContext(PopUpOpened);
 
     const navigate = useNavigate();
 
@@ -260,6 +264,17 @@ const Projects = () => {
                                 </div>
                             </div>
                             <p className="project-status">Status: <span>{project.status}</span></p>
+                            <p>
+                                {project.description.split(" ").slice(0, 20).join(" ")}
+                                {project.description.split(" ").length > 20 && <i
+                                style={{color: '#001696', marginLeft: '10px', cursor: 'pointer'}}
+                                onClick={() => {
+                                    setShowDetails(true);
+                                    setIsPopUpOpened(true);
+                                    window.scrollTo(0, 0)
+                                }}
+                            >Read more ...</i>}
+                            </p>
 
                             {projectTasks.map((task, taskIndex) => (
                                 <div key={taskIndex} className="project-task">
@@ -273,6 +288,7 @@ const Projects = () => {
                     );
                 })}
             </section>
+            {showDetails && <Details data={data[0]} setState={setShowDetails}/>}
         </>
     );
 };
