@@ -234,7 +234,9 @@ const Developer = () => {
                                     <tr key={index}>
                                         <td>{task.name}</td>
                                         <td>{task.created_at.split('T')[0] + " " + task.created_at.split('T')[1].split(':')[0] + ':' + task.created_at.split('T')[1].split(':')[1]}</td>
-                                        <td>{task.flag}</td>
+                                        {task.flag == 'yellow' && <td>Pending</td>}
+                                        {task.flag == 'red' && <td>In Progress</td>}
+                                        {task.flag == 'green' && <td>Completed</td>}
                                         <td>
                                             <div className="timer">
                                                 <div>{getTimerDisplay(task.id)}</div>
