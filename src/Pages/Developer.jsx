@@ -172,15 +172,19 @@ const Developer = () => {
                 <div>
                     <i className='fa-solid fa-list'></i>
                     <div>
-                        <b>Pending Task</b>
-                        <p>0</p>
+                        <b>Pending Projects</b>
+                        <p>{
+                            data.filter(project => project.status == 'pending').length    
+                        }</p>
                     </div>
                 </div>
                 <div>
                     <i className='fa-solid fa-check' style={{ backgroundColor: '#001696', color: 'white', borderRadius: "50%", padding: '2px 3px', fontSize: '14px' }}></i>
                     <div>
-                        <b>Completed Task</b>
-                        <p>0</p>
+                        <b>Completed Projects</b>
+                        <p>{
+                            data.filter(project => project.status == 'completed').length    
+                        }</p>
                     </div>
                 </div>
                 <div>
@@ -233,13 +237,13 @@ const Developer = () => {
                         {
                             tasks.map((task, index) => {
                                 return (
-                                    <tr key={index} onClick={() => {
+                                    <tr key={index}>
+                                        <td onClick={() => {
                                         setShowDetails(true);
                                         setIsPopUpOpened(true);
                                         setDetailsPro(task);
                                         window.scrollTo(0, 0);
-                                    }}>
-                                        <td>{task.name}</td>
+                                    }}>{task.name}</td>
                                         <td>{task.created_at.split('T')[0] + " " + task.created_at.split('T')[1].split(':')[0] + ':' + task.created_at.split('T')[1].split(':')[1]}</td>
                                         {task.flag == 'yellow' && <td>Pending</td>}
                                         {task.flag == 'red' && <td>In Progress</td>}

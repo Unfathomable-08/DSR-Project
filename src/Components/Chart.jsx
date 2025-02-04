@@ -14,7 +14,7 @@ export const Bar = () => {
                 labels: ['Label A', 'Label B', 'Label C', 'Label D', 'Label E'],
                 datasets: [{
                     label: "Progress",
-                    data: [25, 25, 10, 58, 12],
+                    data: [45, 25, 10, 85, 12],
                     backgroundColor: '#001696',
                     borderColor: '#001696',
                     borderWidth: 1
@@ -73,10 +73,10 @@ export const ChartLine = () => {
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June'],
                 datasets: [{
                     label: 'Sales',
-                    data: [10, 20, 30, 40],
+                    data: [10, 40, 30, 40, 12, 85],
                     backgroundColor: '#001696',
                     borderColor: '#001696',
                     borderWidth: 1
