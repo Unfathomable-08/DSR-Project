@@ -6,6 +6,7 @@ import Navbar from '../Components/Navbar'
 import Sidebar from '../Components/Sidebar';
 import { PopUpOpened, UserEmail, UserName, UserPosition } from '../Context';
 import AddTask from '../Components/AddTask';
+import Details from '../Components/Details';
 
 const Developer = () => {
     const [, setUserEmail] = useContext(UserEmail);
@@ -22,11 +23,13 @@ const Developer = () => {
     const [showEditTask, setShowEditTask] = useState(false);
     const [, setIsPopUpOpened] = useContext(PopUpOpened);
 
+    const [showDetails, setShowDetails] = useState(false);
+    const [detailsPro, setDetailsPro] = useState({});
+
     //fetching timer
     const fetchTimimg = async(taskId) => {
         const timeTaken = tasks.filter((task) => task.id == taskId)[0].time_taken;
         try {
-            console.log({time_taken: timers[taskId].elapsed + timeTaken});
             const token = localStorage.getItem('token');
             await axios.patch(`http://127.0.0.1:8000/users/task/?id=${taskId}`, {
                 time_taken: timers[taskId].elapsed + timeTaken
@@ -146,7 +149,6 @@ const Developer = () => {
                   Authorization: `Bearer ${token}`
                 }
             });
-            console.log(res)
         } catch (error) {
             console.log(error)
         }
@@ -231,7 +233,12 @@ const Developer = () => {
                         {
                             tasks.map((task, index) => {
                                 return (
-                                    <tr key={index}>
+                                    <tr key={index} onClick={() => {
+                                        setShowDetails(true);
+                                        setIsPopUpOpened(true);
+                                        setDetailsPro(task);
+                                        window.scrollTo(0, 0);
+                                    }}>
                                         <td>{task.name}</td>
                                         <td>{task.created_at.split('T')[0] + " " + task.created_at.split('T')[1].split(':')[0] + ':' + task.created_at.split('T')[1].split(':')[1]}</td>
                                         {task.flag == 'yellow' && <td>Pending</td>}
@@ -260,6 +267,8 @@ const Developer = () => {
             </section>
             {showAddTask && <AddTask setState={setShowAddTask} project={focusedProject.name} closeFocused={setFocusedProject} action="add"/>}
             {showEditTask && <AddTask setState={setShowEditTask} project={focusedProject.name} closeFocused={setFocusedProject} action="edit" edit={focusedTask}/>}
+
+            {showDetails && <Details data={detailsPro} setState={setShowDetails} details="task"/>}
         </div>
     )
 }

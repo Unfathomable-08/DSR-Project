@@ -24,7 +24,6 @@ const AddTask = (props) => {
       const fetchData = async () => {
         try {
           if(props.action == "add"){
-            console.log(formData)
             const res = await axios.post('http://127.0.0.1:8000/users/task/', formData, {
               headers: {
                 Authorization: `Bearer ${token}`
@@ -37,13 +36,11 @@ const AddTask = (props) => {
             }
           }
           else {
-            console.log(formData)
             const res = await axios.patch(`http://127.0.0.1:8000/users/task/?id=${props.edit.id}`, formData, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
             });
-            console.log(res)
             if (res.status == 200){
               setIsPopUpOpened(false);
               props.setState(false);

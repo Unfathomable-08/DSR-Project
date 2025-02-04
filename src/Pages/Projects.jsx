@@ -79,7 +79,6 @@ const Projects = () => {
                 const token = localStorage.getItem('token');
                 const fetchData = async () => {
                     try {
-                        console.log(formData)
                         const res = await axios.post('http://127.0.0.1:8000/users/projects/', formData, {
                             headers: {
                                 Authorization: `Bearer ${token}`
@@ -100,7 +99,6 @@ const Projects = () => {
             if (formData !== "") {
                 const token = localStorage.getItem('token');
                 const fetchData = async () => {
-                    console.log(formData)
                     try {
                         const res = await axios.patch('http://127.0.0.1:8000/users/projects/', formData, {
                             headers: {
@@ -256,7 +254,12 @@ const Projects = () => {
                 {data.map((project, index) => {
                     const projectTasks = tasks.find(task => task.projectName === project.name)?.tasks || [];
                     return (
-                        <div key={index} className="project-card">
+                        <div key={index} className="project-card" onClick={() => {
+                            setShowDetails(true);
+                            setIsPopUpOpened(true);
+                            setDetailsPro(project);
+                            window.scrollTo(0, 0);
+                        }}>
                             <div className="btns">
                                 <h2>{project.name}</h2>
                                 <div>
@@ -283,14 +286,14 @@ const Projects = () => {
                                     <b>{task.name}</b>
                                     <p>Assigned Date: {task.created_at?.split('T')[0] + " " + task.created_at?.split('T')[1].split(':')[0] + ":" + task.created_at?.split('T')[1].split(':')[1]}</p>
                                     <p>Status: <span>{task.status}</span></p>
-                                    <p>Timer: {task.timer || "Not started"}</p>
+                                    <p>Timer: {task.time_taken ? new Date(task.time_taken * 1000).toISOString().substr(11, 8) : "Not started"}</p>
                                 </div>
                             ))}
                         </div>
                     );
                 })}
             </section>
-            {showDetails && <Details data={detailsPro} setState={setShowDetails}/>}
+            {showDetails && <Details data={detailsPro} setState={setShowDetails} details="project"/>}
         </>
     );
 };

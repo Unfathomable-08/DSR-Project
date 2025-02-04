@@ -25,7 +25,6 @@ const ViewTask = (props) => {
                         Authorization: `Bearer ${token}`
                     }
                 });
-                console.log(res)
                 if (res.status == 204){
                     setIsPopUpOpened(false);
                     props.setState(false);
