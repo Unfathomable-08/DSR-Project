@@ -23,6 +23,7 @@ const Projects = () => {
     const [, setUserPosition] = useContext(UserPosition);
 
     const [showDetails, setShowDetails] = useState(false);
+    const [detailsPro, setDetailsPro] = useState({});
     const [, setIsPopUpOpened] = useContext(PopUpOpened);
 
     const navigate = useNavigate();
@@ -259,8 +260,8 @@ const Projects = () => {
                             <div className="btns">
                                 <h2>{project.name}</h2>
                                 <div>
-                                    <button onClick={() => editProject(project)}><i className="fa-solid fa-pen-to-square" style={{color: 'green'}}></i></button>
-                                    <button onClick={() => deleteProject(project)}><i className="fa-solid fa-trash" style={{color: '#dd0000'}}></i></button>
+                                    <button onClick={() => editProject(project)}><i className="fa-solid fa-pen-to-square" style={{color: 'green', cursor: 'pointer'}}></i></button>
+                                    <button onClick={() => deleteProject(project)}><i className="fa-solid fa-trash" style={{color: '#dd0000', cursor: 'pointer'}}></i></button>
                                 </div>
                             </div>
                             <p className="project-status">Status: <span>{project.status}</span></p>
@@ -271,7 +272,8 @@ const Projects = () => {
                                 onClick={() => {
                                     setShowDetails(true);
                                     setIsPopUpOpened(true);
-                                    window.scrollTo(0, 0)
+                                    setDetailsPro(project);
+                                    window.scrollTo(0, 0);
                                 }}
                             >Read more ...</i>}
                             </p>
@@ -288,7 +290,7 @@ const Projects = () => {
                     );
                 })}
             </section>
-            {showDetails && <Details data={data[0]} setState={setShowDetails}/>}
+            {showDetails && <Details data={detailsPro} setState={setShowDetails}/>}
         </>
     );
 };

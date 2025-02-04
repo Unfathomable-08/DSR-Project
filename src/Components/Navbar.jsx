@@ -33,7 +33,7 @@ const Navbar = () => {
 
       <div className='navbar'>
         <div className='navbar-left'>
-          <button onClick={toggleSidebar} className='sidebar-toggler-btn'><i className="fa-solid fa-bars"></i></button>
+          <button onClick={toggleSidebar} className='sidebar-toggler-btn'><i className="fa-solid fa-bars" style={{cursor: 'pointer'}}></i></button>
           <h1>LMS Portal</h1>
         </div>
         <nav>

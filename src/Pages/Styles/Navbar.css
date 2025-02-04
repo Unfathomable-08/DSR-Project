@@ -9,6 +9,7 @@
     margin: 0 !important;
     position: fixed;
     width: 90vw;
+    z-index: 10;
 }
 
 .navbar-cont {
