@@ -252,14 +252,14 @@ const Developer = () => {
                                             <div className="timer">
                                                 <div>{getTimerDisplay(task.id)}</div>
                                                 <button onClick={() => toggleTimer(task.id)}>
-                                                    {timers[task.id]?.isRunning ? 'Stop' : 'Start'}
+                                                    {timers[task.id]?.isRunning ? <i className='fa-solid fa-pause'></i> : <i className='fa-solid fa-play'></i>}
                                                 </button>
                                             </div>
                                         </td>
                                         <td>
                                             <div className='action-btn'>
-                                                <button onClick={()=>taskEdit(task)}>Edit</button>
-                                                <button onClick={()=>taskDelete(task.id)}>Delete</button>
+                                                <button onClick={()=>taskEdit(task)}><i className='fa-solid fa-pen-to-square' style={{color: 'green'}}></i></button>
+                                                <button onClick={()=>taskDelete(task.id)}><i className='fa-solid fa-trash' style={{color: '#ee0000'}}></i></button>
                                             </div>
                                         </td>
                                     </tr>

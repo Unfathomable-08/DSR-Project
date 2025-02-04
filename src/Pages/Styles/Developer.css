@@ -104,11 +104,12 @@
 }
 
 .timer button {
-    background-color: #001696;
-    color: white;
+    background-color: transparent;
+    color: #001696;
     border: none;
-    border-radius: 5px;
-    padding: 4px 20px;
+    margin: 0 15px;
+    font-size: 18px;
+    transition: all ease-in 1s;
 }
 
 .action-btn {
@@ -118,16 +119,10 @@
 }
 
 .action-btn button {
-    background-color: #001696;
-    color: white;
-    padding: 4px 15px;
-    margin: 0 5px;
+    background-color: transparent;
     border: none;
-    border-radius: 5px;
-}
-
-.action-btn button:first-child {
-    padding: 4px 22px;
+    font-size: 18px;
+    margin: 0 5px;
 }
 
 .tasks-head {
@@ -167,10 +162,6 @@
     .project-details {
         padding: 10px;
         line-height: 25px;
-    }
-    .action-btn, .timer {
-        flex-direction: column;
-        gap: 4px;
     }
     .project-header {
         padding: 0 70px;
@@ -235,5 +226,11 @@
 @media (max-width: 550px) {
     .project-header>div:nth-child(3) {
         display: none;
+    }
+    .project-tasks {
+        margin: 20px 30px
+    }
+    .projects-grid, .project-header {
+        padding: 0 30px;
     }
 }
