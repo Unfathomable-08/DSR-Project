@@ -60,7 +60,7 @@ export const Bar = () => {
     
     return (
         <div>
-            <canvas ref={canvas}></canvas>
+            <canvas ref={canvas} className='lineChart'></canvas>
         </div>
     )
 }
@@ -123,7 +123,7 @@ export const ChartLine = () => {
 
     return (
         <>
-            <canvas ref={line}></canvas>
+            <canvas ref={line} className='lineChart'></canvas>
         </>
     )
 }

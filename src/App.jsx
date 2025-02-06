@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from './Pages/Home'
+import { useEffect, useState } from 'react'
+import { Routes, Route } from 'react-router-dom'
 import Login from './Pages/Login'
 import Signup from './Pages/Signup'
 import ForgetPassword from './Pages/ForgetPassword'
 import { UserName, PopUpOpened, UserPosition, UserEmail, SidebarContext } from './Context'
 import ChangePassword from './Pages/ChangePassword'
-import Lead from './Pages/Lead'
 import AdminPanel from './Pages/AdminPanel'
 import Developer from './Pages/Developer'
 import Projects from './Pages/Projects'
+import ClintTable from './Pages/ClintTable'
+import DeveloperTable from './Pages/DeveloperTable'
 
 const App = () => {
   const [userName, setUserName] = useState('');
@@ -43,6 +43,9 @@ const App = () => {
                     <Route path='/admin' element={<AdminPanel/>}/>
                     <Route path='/developer' element={<Developer/>}/>
                     <Route path='/projects' element={<Projects/>}/>
+                    <Route path='/clients' element={<ClintTable/>}/>
+                    <Route path='/developerDetails' element={<DeveloperTable/>}/>
+                    <Route path='/leadDetails' element={<DeveloperTable/>}/>
                   </Routes>
               </UserName.Provider>
             </PopUpOpened.Provider>

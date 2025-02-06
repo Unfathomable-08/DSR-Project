@@ -141,11 +141,11 @@
 }
 
 .pending {
-    background-color: rgb(255, 195, 156);
+    background-color: #F8D7B9;
 }
 
 .completed {
-    background-color: rgb(162, 255, 193);
+    background-color: #C8E6C9;
 }
 
 .progress {

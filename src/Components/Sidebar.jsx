@@ -1,9 +1,10 @@
 import { useContext } from "react";
 import "../Pages/Styles/Sidebar.css";
 import { Link } from "react-router-dom";
-import { SidebarContext } from "../Context";
+import { SidebarContext, UserPosition } from "../Context";
 
 const Sidebar = () => {
+    const [userPosition] = useContext(UserPosition)
     const [sidebarOpened, setSidebarOpened] = useContext(SidebarContext);
 
   return (
@@ -14,11 +15,15 @@ const Sidebar = () => {
         <ul className="sidebar-nav">
           <li className="sidebar-nav-item"><i className="fa-solid fa-house"></i><Link to="/">Dashboard</Link></li>
           <li className="sidebar-nav-item"><i className="fa-solid fa-clipboard"></i><Link to="/projects">Projects</Link></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-users"></i><a href="#">Clients</a></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-user-plus"></i><a href="#">Team Leads</a></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-users"></i><a href="#">Users</a></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-person-running"></i><a href="#">Team Lead Dashboard</a></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-code"></i><Link to="/developer">Developer Dashboard</Link></li>
+          <li className="sidebar-nav-item"><i className="fa-solid fa-users"></i><Link to="/clients">Clients</Link></li>
+          <li className="sidebar-nav-item"><i className="fa-solid fa-user-plus"></i><Link to="/leadDetails">Team Leads</Link></li>
+          <li className="sidebar-nav-item"><i className="fa-solid fa-users"></i><Link to="/developerDetails">Developers</Link></li>
+          {
+            userPosition == 'admin' ?
+            <li className="sidebar-nav-item"><i className="fa-solid fa-code"></i><Link to="/developer">Admin Dashboard</Link></li>
+            :
+            <li className="sidebar-nav-item"><i className="fa-solid fa-code"></i><Link to="/developer">{ userPosition == 'lead' ? 'Team Lead Dashboard' : 'Developer Dashboard' }</Link></li>
+          }
         </ul>
       </nav>
     </div>

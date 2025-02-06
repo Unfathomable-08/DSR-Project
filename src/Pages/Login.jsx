@@ -3,10 +3,12 @@ import './Styles/Login.css'
 import { useForm } from 'react-hook-form';
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserName } from '../Context';
+import { UserEmail, UserName, UserPosition } from '../Context';
 
 const Login = () => {
   const [, setUserName] = useContext(UserName);
+  const [, setUserPosition] = useContext(UserPosition);
+  const [, setUserEmail] = useContext(UserEmail);
 
   const navigate = useNavigate()
 
@@ -24,6 +26,8 @@ const Login = () => {
           const res = await axios.post('http://127.0.0.1:8000/users/login/', formData);
           if (res.status === 200){
             setUserName(res.data.data.name);
+            setUserPosition(res.data.data.role);
+            setUserEmail(res.data.data.email);
             localStorage.setItem("token", res.data.data.token.access);
             return navigate('/');
           }

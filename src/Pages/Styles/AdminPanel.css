@@ -45,6 +45,11 @@ canvas {
     height: 100% !important;
 }
 
+.lineChart {
+    height: 300px !important;
+    margin: 40px 0 !important;
+}
+
 @media (max-width: 1040px) {
     .admin-cont {
         gap: 50px;

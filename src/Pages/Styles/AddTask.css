@@ -44,10 +44,29 @@
     margin: 10px 0;
 }
 
+.add-task form textarea {
+    width: calc(100% - 20px);
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    height: 100px;
+    padding: 10px;
+}
+
 .add-task form input[type="submit"]{
     width: 100%;
     background-color: #001696;
     color: white;
+}
+
+.submit-btn-re {
+    width: 100%;
+    background-color: #001696;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    margin: 10px 0;
 }
 
 .status-select {

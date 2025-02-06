@@ -20,7 +20,7 @@ const Projects = () => {
 
     const [userEmail, setUserEmail] = useContext(UserEmail);
     const [, setUserName] = useContext(UserName);
-    const [, setUserPosition] = useContext(UserPosition);
+    const [userPosition, setUserPosition] = useContext(UserPosition);
 
     const [showDetails, setShowDetails] = useState(false);
     const [detailsPro, setDetailsPro] = useState({});
@@ -154,7 +154,9 @@ const Projects = () => {
         <>
             <Sidebar />
             <Navbar />
-            <div>
+            {
+                userPosition !== 'developer' &&
+                <div>
                 <section className="project-section-container">
                     <h1>Projects</h1>
                     <button
@@ -248,6 +250,7 @@ const Projects = () => {
                     </section>
                 )}
             </div>
+            }
 
             <section className="existing-projects-container">
                 <h1>Existing Projects</h1>
