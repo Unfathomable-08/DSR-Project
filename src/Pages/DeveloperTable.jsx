@@ -7,6 +7,7 @@ import { useLocation } from "react-router-dom";
 import './Styles/Developer.css';
 import { PopUpOpened } from "../Context";
 import AddDev from "../Components/AddDev";
+import Details from "../Components/Details";
 
 const DeveloperTable = () => {
   const location = useLocation();
@@ -15,6 +16,8 @@ const DeveloperTable = () => {
   const [showAddDev, setShowAddDev] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const [focused, setFocused] = useState(null);
+  const [showDetails, setShowDetails] = useState(false);
+  const [detailsPro, setDetailsPro] = useState(null);
 
   // Fetch data
   useEffect(() => {
@@ -76,15 +79,25 @@ const DeveloperTable = () => {
                   <td>Name</td>
                   <td>Email</td>
                   <td>Role</td>
-                  <td className="">Actions</td>
+                  <td>Actions</td>
                 </tr>
               </thead>
               <tbody>
                 {developers.map((dev, index) => (
                   <tr key={index} className="">
-                    <td >{dev.name}</td>
+                    <td 
+                      style={{cursor: 'pointer'}}
+                      onClick={()=>{
+                      setIsPopUpOpened(true);
+                      setDetailsPro(dev);
+                      setShowDetails(true);
+                    }}>{dev.name}</td>
                     <td>{dev.email}</td>
-                    <td title={dev.details}>
+                    <td title={dev.details} onClick={()=>{
+                      setIsPopUpOpened(true);
+                      setDetailsPro(dev);
+                      setShowDetails(true);
+                    }}>
                       {dev?.job?.split('-')?.join('')}
                     </td>
                     <td>
@@ -112,6 +125,8 @@ const DeveloperTable = () => {
       </div>
       { showAddDev && <AddDev setState={ setShowAddDev } action="add" /> }
       { isEditing && <AddDev setState={ setIsEditing } action="edit" edit={ focused } /> }
+
+      {showDetails && <Details data={detailsPro} setState={setShowDetails} details="client"/>}
     </>
   );
 };

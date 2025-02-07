@@ -6,6 +6,7 @@ import Sidebar from "../Components/Sidebar";
 import Navbar from "../Components/Navbar";
 import AddUser from "../Components/AddUser";
 import { PopUpOpened } from "../Context";
+import Details from "../Components/Details";
 
 const DeveloperTable = () => {
   const [developers, setDevelopers] = useState([]);
@@ -13,6 +14,9 @@ const DeveloperTable = () => {
   const [focusedClient, setFocusedClient] = useState(null);
   const [editing, setedititng] = useState(false);
   const [, setIsPopUpOpened] = useContext(PopUpOpened);
+
+  const [showDetails, setShowDetails] = useState(false);
+  const [detailsPro, setDetailsPro] = useState(null);
 
   // Fetch data
   useEffect(() => {
@@ -79,9 +83,21 @@ const DeveloperTable = () => {
                   key={index}
                   className="clickable-row"
                 >
-                  <td className="responsivename">{dev.name}</td>
+                  <td className="responsivename"
+                    onClick={()=>{
+                      setIsPopUpOpened(true);
+                      setDetailsPro(dev);
+                      setShowDetails(true);
+                    }}
+                  >{dev.name}</td>
                   <td>{dev.email}</td>
-                  <td title={dev.details}>
+                  <td title={dev.details}
+                    onClick={()=>{
+                      setIsPopUpOpened(true);
+                      setDetailsPro(dev);
+                      setShowDetails(true);
+                    }}
+                  >
                     {dev.details?.length > 20
                       ? `${dev.details.slice(0, 20)}...`
                       : dev.details}
@@ -112,6 +128,8 @@ const DeveloperTable = () => {
 
     { showAddClient && <AddUser setState={ setShowAddClient } action="add" /> }
     { editing && <AddUser setState={ setedititng } action="edit" edit={ focusedClient } /> }
+
+    {showDetails && <Details data={detailsPro} setState={setShowDetails} details="client"/>}
     </>
   );
 };

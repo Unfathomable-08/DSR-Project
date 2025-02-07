@@ -100,7 +100,7 @@ const AddUser = (props) => {
                 />
                 {errors.details && <p className='error'>{errors.details.message}</p>}
 
-                <input type="submit" value={props.action == "add" ? 'Add Task' : "Edit Task"} disabled={isSubmitting} />
+                <input type="submit" value={props.action == "add" ? 'Add Client' : "Edit Client"} disabled={isSubmitting} />
             </form>
         </div>
     )

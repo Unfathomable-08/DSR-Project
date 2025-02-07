@@ -144,9 +144,13 @@ const AddDev = (props) => {
                     value={location.pathname == '/developerDetails' ? 'developer' : 'lead'}
                     hidden
                     {...register('role')}
-                />
+                    />
 
-                <input type="submit" value={props.action == "add" ? 'Add Task' : "Edit Task"} disabled={isSubmitting} />
+                {   location.pathname == '/developerDetails' ?
+                        <input type="submit" value={props.action == "add" ? 'Add Developer' : "Edit Developer"} disabled={isSubmitting} />
+                        :
+                        <input type="submit" value={props.action == "add" ? 'Add Lead' : "Edit Lead"} disabled={isSubmitting} />
+                }
             </form>
         </div>
     )
