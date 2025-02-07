@@ -13,3 +13,29 @@ body {
 .no-scroll {
   overflow-y: hidden;
 }
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 3px;
+  border: 2px solid #001696;
+  background-color: #fff;
+  position: relative;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #001696; 
+  border-color: #001696;
+}
+
+input[type="checkbox"]:checked::after {
+  content: '✔';
+  position: absolute;
+  top: -3px;
+  left: 1.8px;
+  color: white;
+  font-size: 14px;
+}

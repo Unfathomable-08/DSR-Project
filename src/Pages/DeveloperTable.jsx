@@ -28,7 +28,7 @@ const DeveloperTable = () => {
         const res = await axios.get("http://127.0.0.1:8000/users/leaddeveloper/", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        if(location.pathname === '/developerDetails'){
+        if (location.pathname === '/developerDetails') {
           setDevelopers(res.data.developers);
           console.log(res.data.developers);
         } else {
@@ -40,18 +40,35 @@ const DeveloperTable = () => {
     };
     fetchData();
   }, [location.pathname]);
-  
+
   const deleteDev = async (email) => {
-      const token = localStorage.getItem("token");
-      try {
-        await axios.delete(`http://127.0.0.1:8000/users/leaddeveloper/`, {
-          headers: { Authorization: `Bearer ${token}` },
-          data: { email },
-        });
-        setDevelopers(developers.filter((dev) => dev.email !== email));
-      } catch (error) {
-        console.log("Delete error:", error);
-      }
+    const token = localStorage.getItem("token");
+    try {
+      await axios.delete(`http://127.0.0.1:8000/users/leaddeveloper/`, {
+        headers: { Authorization: `Bearer ${token}` },
+        data: { email },
+      });
+      setDevelopers(developers.filter((dev) => dev.email !== email));
+    } catch (error) {
+      console.log("Delete error:", error);
+    }
+  }
+
+  const chnageActive = async (dev) => {
+    try {
+      const token = localStorage.getItem('token');
+
+      await axios.patch(`http://127.0.0.1:8000/users/leaddeveloper/`, {
+        is_active: !dev.is_active,
+        email: dev.email
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -65,7 +82,7 @@ const DeveloperTable = () => {
               <h1 className="">
                 {location.pathname === '/developerDetails' ? 'Developers' : 'Team Leads'}
               </h1>
-              <button onClick={()=>{
+              <button onClick={() => {
                 setShowAddDev(true);
                 setIsPopUpOpened
               }}>
@@ -79,40 +96,46 @@ const DeveloperTable = () => {
                   <td>Name</td>
                   <td>Email</td>
                   <td>Role</td>
+                  <td>Is Active</td>
                   <td>Actions</td>
                 </tr>
               </thead>
               <tbody>
                 {developers.map((dev, index) => (
                   <tr key={index} className="">
-                    <td 
-                      style={{cursor: 'pointer'}}
-                      onClick={()=>{
-                      setIsPopUpOpened(true);
-                      setDetailsPro(dev);
-                      setShowDetails(true);
-                    }}>{dev.name}</td>
+                    <td
+                      style={{ cursor: 'pointer' }}
+                      onClick={() => {
+                        setIsPopUpOpened(true);
+                        setDetailsPro(dev);
+                        setShowDetails(true);
+                      }}>{dev.name}</td>
                     <td>{dev.email}</td>
-                    <td title={dev.details} onClick={()=>{
+                    <td title={dev.details} onClick={() => {
                       setIsPopUpOpened(true);
                       setDetailsPro(dev);
                       setShowDetails(true);
                     }}>
                       {dev?.job?.split('-')?.join('')}
                     </td>
+
+                    <td style={{ textAlign: 'center' }}>
+                      <input type="checkbox" defaultChecked={dev.is_active} onChange={() => { chnageActive(dev) }} />
+                    </td>
+
                     <td>
                       <div className="action-btn">
-                        <button onClick={()=>{
+                        <button onClick={() => {
                           setIsPopUpOpened(true);
                           setIsEditing(true);
                           setFocused(dev)
                         }}>
-                          <i className="fa-solid fa-pen-to-square edit" style={{color: 'green'}}></i>
+                          <i className="fa-solid fa-pen-to-square edit" style={{ color: 'green' }}></i>
                         </button>
-                        <button onClick={()=>{
+                        <button onClick={() => {
                           deleteDev(dev.email);
                         }}>
-                          <i className="fa-solid fa-trash trash" style={{color: '#ee0000'}}></i>
+                          <i className="fa-solid fa-trash trash" style={{ color: '#ee0000' }}></i>
                         </button>
                       </div>
                     </td>
@@ -123,10 +146,10 @@ const DeveloperTable = () => {
           </div>
         </div>
       </div>
-      { showAddDev && <AddDev setState={ setShowAddDev } action="add" /> }
-      { isEditing && <AddDev setState={ setIsEditing } action="edit" edit={ focused } /> }
+      {showAddDev && <AddDev setState={setShowAddDev} action="add" />}
+      {isEditing && <AddDev setState={setIsEditing} action="edit" edit={focused} />}
 
-      {showDetails && <Details data={detailsPro} setState={setShowDetails} details="client"/>}
+      {showDetails && <Details data={detailsPro} setState={setShowDetails} details="client" />}
     </>
   );
 };
