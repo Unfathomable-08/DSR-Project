@@ -7,6 +7,7 @@ import Navbar from "../Components/Navbar";
 import AddUser from "../Components/AddUser";
 import { PopUpOpened } from "../Context";
 import Details from "../Components/Details";
+import { useNavigate } from "react-router-dom";
 
 const DeveloperTable = () => {
   const [developers, setDevelopers] = useState([]);
@@ -17,6 +18,8 @@ const DeveloperTable = () => {
 
   const [showDetails, setShowDetails] = useState(false);
   const [detailsPro, setDetailsPro] = useState(null);
+
+  const navigate = useNavigate();
 
   // Fetch data
   useEffect(() => {
@@ -30,6 +33,9 @@ const DeveloperTable = () => {
         setDevelopers(res.data);
       } catch (error) {
         console.log(error);
+        if (error.status == 401){
+          navigate('/login');
+        }
       }
     };
     fetchData();

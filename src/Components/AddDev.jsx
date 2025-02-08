@@ -24,7 +24,6 @@ const AddDev = (props) => {
             const token = localStorage.getItem('token')
             const fetchData = async () => {
                 try {
-                    console.log(formData)
                     if (props.action == "add") {
                         const res = await axios.post('http://127.0.0.1:8000/users/leaddeveloper/', formData, {
                             headers: {
@@ -38,7 +37,6 @@ const AddDev = (props) => {
                         }
                     }
                     else {
-                        console.log(formData)
                         const res = await axios.patch(`http://127.0.0.1:8000/users/leaddeveloper/`, formData, {
                             headers: {
                                 Authorization: `Bearer ${token}`

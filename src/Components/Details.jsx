@@ -54,7 +54,6 @@ const Details = (props) => {
     )
   }
   else {
-    console.log(props.data)
     return (
       <div className="details-view-task">
         <div className="scrollbar-cont">

@@ -36,14 +36,12 @@ const AddUser = (props) => {
                         setIsPopUpOpened(false);
                         window.location.reload();
                     }
-                    console.log(res.data);
                 } catch (error) {
                     console.log("Error adding developer:", error);
                 }
             }
             else {
                 try {
-                    console.log(formData)
                     const res = await axios.patch(
                         `http://127.0.0.1:8000/users/client/`,
                         formData,

@@ -50,7 +50,9 @@ const Home = () => {
         } catch (error) {
           alert('An error occured while sending data!')
           console.error(error);
-          navigate('/login')
+          if (error.status == 401){
+            navigate('/login');
+          }
         }
       };
       fetchData();

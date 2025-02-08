@@ -3,9 +3,9 @@ import "./styles/DeveloperTable.css";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import './Styles/Developer.css';
-import { PopUpOpened } from "../Context";
+import { PopUpOpened, UserPosition } from "../Context";
 import AddDev from "../Components/AddDev";
 import Details from "../Components/Details";
 
@@ -19,6 +19,9 @@ const DeveloperTable = () => {
   const [showDetails, setShowDetails] = useState(false);
   const [detailsPro, setDetailsPro] = useState(null);
 
+  const [userPosition] = useContext(UserPosition);
+  const navigate = useNavigate();
+
   // Fetch data
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -30,12 +33,14 @@ const DeveloperTable = () => {
         });
         if (location.pathname === '/developerDetails') {
           setDevelopers(res.data.developers);
-          console.log(res.data.developers);
         } else {
           setDevelopers(res.data.leads);
         }
       } catch (error) {
         console.log(error);
+        if (error.status == 401){
+          navigate('/login');
+        }
       }
     };
     fetchData();
@@ -50,7 +55,7 @@ const DeveloperTable = () => {
       });
       setDevelopers(developers.filter((dev) => dev.email !== email));
     } catch (error) {
-      console.log("Delete error:", error);
+      console.log(error)
     }
   }
 
@@ -96,7 +101,7 @@ const DeveloperTable = () => {
                   <td>Name</td>
                   <td>Email</td>
                   <td>Role</td>
-                  <td>Is Active</td>
+                  {userPosition == 'admin' && <td>Is Active</td>}
                   <td>Actions</td>
                 </tr>
               </thead>
@@ -119,9 +124,9 @@ const DeveloperTable = () => {
                       {dev?.job?.split('-')?.join('')}
                     </td>
 
-                    <td style={{ textAlign: 'center' }}>
+                    {userPosition == 'admin' && <td style={{ textAlign: 'center' }}>
                       <input type="checkbox" defaultChecked={dev.is_active} onChange={() => { chnageActive(dev) }} />
-                    </td>
+                    </td>}
 
                     <td>
                       <div className="action-btn">

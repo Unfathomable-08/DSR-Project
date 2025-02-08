@@ -3,6 +3,7 @@ import '../Pages/Styles/ViewTask.css'
 import { PopUpOpened } from '../Context'
 import AddTask from './AddTask';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ViewTask = (props) => {
 
@@ -16,6 +17,8 @@ const ViewTask = (props) => {
         setEditPageOpened(true);
         setEdit(data)
     }
+
+    const navigate = useNavigate()
 
     const delateTask = async (data) => {
         const token = localStorage.getItem('token');
@@ -48,6 +51,9 @@ const ViewTask = (props) => {
             }
             catch (error){
                 console.log(error)
+                if (error.status == 401){
+                    navigate('/login');
+                }
             }
         }
         fetchData();

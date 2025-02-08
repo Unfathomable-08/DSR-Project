@@ -64,7 +64,9 @@ const Projects = () => {
                 } catch (error) {
                     console.log(error)
                     alert('An error occurred while sending data!');
-                    navigate('/login');
+                    if (error.status == 401){
+                        navigate('/login');
+                    }
                 }
             };
             fetchData();

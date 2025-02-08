@@ -7,6 +7,7 @@ import Sidebar from '../Components/Sidebar';
 import { PopUpOpened, UserEmail, UserName, UserPosition } from '../Context';
 import AddTask from '../Components/AddTask';
 import Details from '../Components/Details';
+import { useNavigate } from 'react-router-dom';
 
 const Developer = () => {
     const [, setUserEmail] = useContext(UserEmail);
@@ -25,6 +26,8 @@ const Developer = () => {
 
     const [showDetails, setShowDetails] = useState(false);
     const [detailsPro, setDetailsPro] = useState({});
+
+    const navigate = useNavigate();
 
     //fetching timer
     const fetchTimimg = async(taskId) => {
@@ -81,6 +84,7 @@ const Developer = () => {
             }
             catch (error) {
                 console.log(error);
+                navigate('/')
             }
         }
         fetchData();
