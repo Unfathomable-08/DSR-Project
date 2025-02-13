@@ -1,6 +1,6 @@
 // DeveloperTable.jsx
 import { useContext, useEffect, useState } from "react";
-import "./styles/developer.css";
+import "./Styles/developer.css";
 import axios from "axios";
 import Sidebar from "../Components/Sidebar";
 import Navbar from "../Components/Navbar";
