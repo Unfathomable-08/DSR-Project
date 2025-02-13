@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import "./styles/DeveloperTable.css";
+import "./Styles/DeveloperTable.css";
 import axios from "axios";
 import Navbar from "../Components/Navbar";
 import Sidebar from "../Components/Sidebar";
