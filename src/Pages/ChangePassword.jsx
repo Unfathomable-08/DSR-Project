@@ -22,7 +22,7 @@ const ChangePassword = () => {
                 if (FormData.password == FormData.password2){
                     if (FormData.password1 !== FormData.password){
                         try {
-                            const res = await axios.post('http://127.0.0.1:8000/users/change-password/', FormData, {
+                            const res = await axios.post('https://lms-dsr-project.vercel.app/users/change-password/', FormData, {
                               headers: {
                                 'Authorization': `Bearer ${token})}`
                               }

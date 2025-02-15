@@ -25,7 +25,7 @@ const AddUser = (props) => {
             if (props.action == 'add') {
                 try {
                     const res = await axios.post(
-                        "http://127.0.0.1:8000/users/client/",
+                        "https://lms-dsr-project.vercel.app/users/client/",
                         formData,
                         {
                             headers: { Authorization: `Bearer ${token}` },
@@ -43,7 +43,7 @@ const AddUser = (props) => {
             else {
                 try {
                     const res = await axios.patch(
-                        `http://127.0.0.1:8000/users/client/`,
+                        `https://lms-dsr-project.vercel.app/users/client/`,
                         formData,
                         { headers: { Authorization: `Bearer ${token}` } }
                     );

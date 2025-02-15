@@ -29,7 +29,7 @@ const ForgetPassword = () => {
     const fetchData = async () => {
       if (emailFormData !== "") {
         try {
-          const res = await axios.post('http://127.0.0.1:8000/users/reset-password/', emailFormData);
+          const res = await axios.post('https://lms-dsr-project.vercel.app/users/reset-password/', emailFormData);
         } catch (error) {
           console.error(error);
         }
@@ -42,7 +42,7 @@ const ForgetPassword = () => {
   //   const fetchData = async () => {
   //     if (otpFormData !== "") {
   //       try {
-  //         const res = await axios.post('http://127.0.0.1:8000/users/otp/', otpFormData);
+  //         const res = await axios.post('https://lms-dsr-project.vercel.app/users/otp/', otpFormData);
   //         console.log(res);
   //       } catch (error) {
   //         console.error(error);

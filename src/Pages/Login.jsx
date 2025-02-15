@@ -23,7 +23,7 @@ const Login = () => {
     const fetchData = async () => {
       if (formData !== "") {
         try {
-          const res = await axios.post('http://127.0.0.1:8000/users/login/', formData);
+          const res = await axios.post('https://lms-dsr-project.vercel.app/users/login/', formData);
           if (res.status === 200){
             setUserName(res.data.data.name);
             setUserPosition(res.data.data.role);
