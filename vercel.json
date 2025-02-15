@@ -1,27 +1,33 @@
 {
     "version": 2,
     "builds": [
-      {
-        "src": "src/index.html",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "src"
+        {
+            "src": "package.json",
+            "use": "@vercel/static-build"
+        },
+        {
+            "src": "api/manage.py",
+            "use": "@vercel/python"
         }
-      },
-      {
-        "src": "api/manage.py",
-        "use": "@vercel/python"
-      }
     ],
     "routes": [
-      {
-        "src": "/api/(.*)",
-        "dest": "api/manage.py"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/src/index.html"
-      }
+        {
+            "src": "/api/(.*)",
+            "dest": "api/manage.py"
+        },
+        {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
+            "src": "/(.*\\.(js|css|svg|png|jpg|jpeg|gif|webp|ico|json|woff|woff2|ttf|otf))",
+            "headers": {
+                "cache-control": "public, max-age=31536000, immutable"
+            }
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/src/index.html"
+        }
     ]
-  }
-  
+}
