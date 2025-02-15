@@ -1,19 +1,19 @@
 {
-    "version": 2, 
+    "version": 2,
     "builds": [
         {
             "src": "package.json",
             "use": "@vercel/static-build"
         },
         {
-            "src": "users/manage.py",
+            "src": "api/manage.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
             "src": "/users/(.*)",
-            "dest": "user/manage.py"
+            "dest": "api/manage.py"
         },
         {
             "src": "/static/(.*)",
@@ -27,7 +27,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/src/index.html"
+            "dest": "/index.html"
         }
     ]
 }
