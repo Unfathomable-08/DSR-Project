@@ -28,7 +28,7 @@ const DeveloperTable = () => {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://lms-dsr-project.vercel.app/users/leaddeveloper/", {
+        const res = await axios.get("https://lms-dsr-project.vercel.app/api/leaddeveloper/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         if (location.pathname === '/developerDetails') {
@@ -49,7 +49,7 @@ const DeveloperTable = () => {
   const deleteDev = async (email) => {
     const token = localStorage.getItem("token");
     try {
-      await axios.delete(`https://lms-dsr-project.vercel.app/users/leaddeveloper/`, {
+      await axios.delete(`https://lms-dsr-project.vercel.app/api/leaddeveloper/`, {
         headers: { Authorization: `Bearer ${token}` },
         data: { email },
       });
@@ -63,7 +63,7 @@ const DeveloperTable = () => {
     try {
       const token = localStorage.getItem('token');
 
-      await axios.patch(`https://lms-dsr-project.vercel.app/users/leaddeveloper/`, {
+      await axios.patch(`https://lms-dsr-project.vercel.app/api/leaddeveloper/`, {
         is_active: !dev.is_active,
         email: dev.email
       }, {
