@@ -27,9 +27,7 @@ SECRET_KEY = 'django-insecure-i7ke@!^0be_!p6r41m1-ajy7dmgy=a)ury@g+#oq3c94^)6-=!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'lms-dsr-project.vercel.app',
-]
+ALLOWED_HOSTS = ['*']
 
 # Email backend
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
@@ -52,7 +50,9 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'corsheaders',
     'rest_framework',
-    'user'
+    'user',
+    'gunicorn',
+    'psycopg2-binary',
 ]
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
@@ -96,8 +96,12 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'bvgugruwq5jd5ontzjg5',
+        'USER': 'uqmtr6rqecqdlhecygo0',
+        'PASSWORD': 'vITZIvlE8v5fKxQPFbZa4AO438swnX',
+        'HOST': 'bvgugruwq5jd5ontzjg5-postgresql.services.clever-cloud.com',
+        'PORT': '50013',
     }
 }
 
