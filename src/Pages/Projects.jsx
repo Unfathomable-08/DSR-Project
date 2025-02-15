@@ -41,7 +41,7 @@ const Projects = () => {
         if (token) {
             const fetchData = async () => {
                 try {
-                    const res = await axios.get('https://lms-dsr-project.vercel.app/api/projects/', {
+                    const res = await axios.get('https://lms-dsr-project.vercel.app/usersprojects/', {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -53,7 +53,7 @@ const Projects = () => {
 
                     const tasksData = [];
                     for (let project of res.data.data) {
-                        const tasksRes = await axios.get(`https://lms-dsr-project.vercel.app/api/task/?project=${project.name}`, {
+                        const tasksRes = await axios.get(`https://lms-dsr-project.vercel.app/userstask/?project=${project.name}`, {
                             headers: {
                                 Authorization: `Bearer ${token}`
                             }
@@ -81,7 +81,7 @@ const Projects = () => {
                 const token = localStorage.getItem('token');
                 const fetchData = async () => {
                     try {
-                        const res = await axios.post('https://lms-dsr-project.vercel.app/api/projects/', formData, {
+                        const res = await axios.post('https://lms-dsr-project.vercel.app/usersprojects/', formData, {
                             headers: {
                                 Authorization: `Bearer ${token}`
                             }
@@ -102,7 +102,7 @@ const Projects = () => {
                 const token = localStorage.getItem('token');
                 const fetchData = async () => {
                     try {
-                        const res = await axios.patch('https://lms-dsr-project.vercel.app/api/projects/', formData, {
+                        const res = await axios.patch('https://lms-dsr-project.vercel.app/usersprojects/', formData, {
                             headers: {
                                 Authorization: `Bearer ${token}`
                             }
@@ -127,7 +127,7 @@ const Projects = () => {
     const deleteProject = async (project) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.delete('https://lms-dsr-project.vercel.app/api/projects/', {
+            const res = await axios.delete('https://lms-dsr-project.vercel.app/usersprojects/', {
                 headers: {
                     Authorization: `Bearer ${token}`
                 },

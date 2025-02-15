@@ -6,14 +6,14 @@
             "use": "@vercel/static-build"
         },
         {
-            "src": "api/manage.py",
+            "src": "usersmanage.py",
             "use": "@vercel/python"
         }
     ],
     "routes": [
         {
-            "src": "/api/(.*)",
-            "dest": "api/manage.py"
+            "src": "/users(.*)",
+            "dest": "usersmanage.py"
         },
         {
             "src": "/static/(.*)",

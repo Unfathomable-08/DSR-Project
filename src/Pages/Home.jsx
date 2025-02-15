@@ -10,7 +10,7 @@ import Sidebar from '../Components/Sidebar'
 
 const Home = () => {
   //featch url
-  const [fetchURL, setFetchURL] = useState('https://lms-dsr-project.vercel.app/api/projects/')
+  const [fetchURL, setFetchURL] = useState('https://lms-dsr-project.vercel.app/usersprojects/')
 
   const [showTaskForm, setShowTaskForm] = useState(false); // for add task
   const [taskFormProject, setTaskFormProject] = useState(null); // for passing project name to add task

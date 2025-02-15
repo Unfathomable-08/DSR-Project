@@ -23,7 +23,7 @@ const ViewTask = (props) => {
     const delateTask = async (data) => {
         const token = localStorage.getItem('token');
             try {
-                const res = await axios.delete(`https://lms-dsr-project.vercel.app/api/task/?id=${data.id}`, {
+                const res = await axios.delete(`https://lms-dsr-project.vercel.app/userstask/?id=${data.id}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -42,7 +42,7 @@ const ViewTask = (props) => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get(`https://lms-dsr-project.vercel.app/api/task/?project=${props.project}`, {
+                const res = await axios.get(`https://lms-dsr-project.vercel.app/userstask/?project=${props.project}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
