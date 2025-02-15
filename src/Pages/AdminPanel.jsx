@@ -19,7 +19,7 @@ const AdminPanel = () => {
     const fetchData = async () => {
       const token = localStorage.getItem('token');
       try {
-        const res = await axios.get('https://lms-dsr-project.vercel.app/users/all/', {
+        const res = await axios.get('https://lms-dsr-project.vercel.app/api/all/', {
           headers: {
             Authorization: `Bearer ${token}`
           }
@@ -40,7 +40,7 @@ const AdminPanel = () => {
     if (token) {
       const fetchData = async () => {
         try {
-          const res = await axios.get('https://lms-dsr-project.vercel.app/users/projects/', {
+          const res = await axios.get('https://lms-dsr-project.vercel.app/api/projects/', {
             headers: {
               'Authorization': `Bearer ${token}`
             }

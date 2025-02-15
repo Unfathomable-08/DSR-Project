@@ -15,9 +15,9 @@ const Sidebar = () => {
         <ul className="sidebar-nav">
           <li className="sidebar-nav-item"><i className="fa-solid fa-house"></i><Link to="/">Dashboard</Link></li>
           <li className="sidebar-nav-item"><i className="fa-solid fa-clipboard"></i><Link to="/projects">Projects</Link></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-users//"></i><Link to="/clients">Clients</Link></li>
+          <li className="sidebar-nav-item"><i className="fa-solid fa-user"></i><Link to="/clients">Clients</Link></li>
           <li className="sidebar-nav-item"><i className="fa-solid fa-user-plus"></i><Link to="/leadDetails">Team Leads</Link></li>
-          <li className="sidebar-nav-item"><i className="fa-solid fa-users//"></i><Link to="/developerDetails">Developers</Link></li>
+          <li className="sidebar-nav-item"><i className="fa-solid fa-user"></i><Link to="/developerDetails">Developers</Link></li>
           {
             userPosition == 'admin' ?
             <li className="sidebar-nav-item"><i className="fa-solid fa-code"></i><Link to="/developer">Admin Dashboard</Link></li>
