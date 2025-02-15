@@ -34,7 +34,7 @@ const Developer = () => {
         const timeTaken = tasks.filter((task) => task.id == taskId)[0].time_taken;
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(`https://lms-dsr-project.vercel.app/userstask/?id=${taskId}`, {
+            await axios.patch(`https://lms-dsr-project.vercel.app/users/task/?id=${taskId}`, {
                 time_taken: timers[taskId].elapsed + timeTaken
             }, {
                 headers: {
@@ -52,7 +52,7 @@ const Developer = () => {
         if (token) {
             const fetchData = async () => {
                 try {
-                    const res = await axios.get('https://lms-dsr-project.vercel.app/usersprojects/', {
+                    const res = await axios.get('https://lms-dsr-project.vercel.app/users/projects/', {
                         headers: {
                             'Authorization': `Bearer ${token}`
                         }
@@ -75,7 +75,7 @@ const Developer = () => {
         const fetchData = async () => {
             const token = localStorage.getItem('token');
             try {
-                const res = await axios.get(`https://lms-dsr-project.vercel.app/userstask/?project=${focusedProject.name}`, {
+                const res = await axios.get(`https://lms-dsr-project.vercel.app/users/task/?project=${focusedProject.name}`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -148,7 +148,7 @@ const Developer = () => {
     const taskDelete = async (id) => {
         const token = localStorage.getItem('token');
         try {     
-            const res = await axios.delete(`https://lms-dsr-project.vercel.app/userstask/?id=${id}`, {
+            const res = await axios.delete(`https://lms-dsr-project.vercel.app/users/task/?id=${id}`, {
                 headers: {
                   Authorization: `Bearer ${token}`
                 }

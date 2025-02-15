@@ -24,7 +24,7 @@ const AddTask = (props) => {
       const fetchData = async () => {
         try {
           if(props.action == "add"){
-            const res = await axios.post('https://lms-dsr-project.vercel.app/userstask/', formData, {
+            const res = await axios.post('https://lms-dsr-project.vercel.app/users/task/', formData, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
@@ -36,7 +36,7 @@ const AddTask = (props) => {
             }
           }
           else {
-            const res = await axios.patch(`https://lms-dsr-project.vercel.app/userstask/?id=${props.edit.id}`, formData, {
+            const res = await axios.patch(`https://lms-dsr-project.vercel.app/users/task/?id=${props.edit.id}`, formData, {
               headers: {
                 Authorization: `Bearer ${token}`
               }

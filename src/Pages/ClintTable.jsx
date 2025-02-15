@@ -27,7 +27,7 @@ const DeveloperTable = () => {
 
     const fetchData = async () => {
       try {
-        const res = await axios.get("https://lms-dsr-project.vercel.app/usersclient/", {
+        const res = await axios.get("https://lms-dsr-project.vercel.app/users/client/", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDevelopers(res.data);
@@ -44,7 +44,7 @@ const DeveloperTable = () => {
   const deleteClient = async (email) => {
       const token = localStorage.getItem("token");
       try {
-        await axios.delete(`https://lms-dsr-project.vercel.app/usersclient/`, {
+        await axios.delete(`https://lms-dsr-project.vercel.app/users/client/`, {
           headers: { Authorization: `Bearer ${token}` },
           data: { email },
         });

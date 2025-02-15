@@ -35,7 +35,7 @@ const Lead = () => {
             const token = localStorage.getItem('token');
             const fetchData = async () => {
                 try {
-                    const res = await axios.post('https://lms-dsr-project.vercel.app/usersprojects/', data, {
+                    const res = await axios.post('https://lms-dsr-project.vercel.app/users//projects/', data, {
                         headers: {
                             Authorization: `Bearer ${token}`
                         }
